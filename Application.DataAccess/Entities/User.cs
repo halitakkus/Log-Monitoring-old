@@ -1,8 +1,5 @@
-﻿namespace Application.Core.Entities.Concrete
-{
-    /// <summary>
-    /// User entity.
-    /// </summary>
+﻿namespace Application.DataAccess.Entities;
+
     public class User
     {
         public int Id { get; set; }
@@ -21,4 +18,3 @@
         public bool OnemliNumarami { get; set; }
         public string ProfilFotografi { get; set; }
     }
-}

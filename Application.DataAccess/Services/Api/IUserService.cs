@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Application.Core.Entities.Concrete;
 using Application.Core.Utilities.DataTransferObjects.User;
+using Application.DataAccess.Entities;
 
 namespace Application.DataAccess.Services.Api;
 

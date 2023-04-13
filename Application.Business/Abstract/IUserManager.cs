@@ -1,9 +1,6 @@
-﻿
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Application.Core.Entities.Concrete;
-using Application.Core.Utilities.DataTransferObjects.User;
+﻿using System.Threading.Tasks;
 using Application.Core.Utilities.Result;
+using Application.DataAccess.Entities;
 
 namespace Application.Business.Abstract
 {

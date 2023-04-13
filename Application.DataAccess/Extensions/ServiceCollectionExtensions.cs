@@ -30,8 +30,6 @@ namespace Application.DataAccess.Extensions
         {
             services.AddSingleton<IHttpService, HttpService>();
             services.AddSingleton<IUserService, UserSevice>();
-
-            services.AddSingleton<IRemoteWorkDal, RemoteWorkDal>();
             services.AddSingleton<ISettingDal, SettingDal>();
         }
     }

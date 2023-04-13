@@ -7,7 +7,6 @@ public class ProfileBase : AutoMapper.Profile
 {
     public ProfileBase()
     {
-        CreateMap<RemoteWorkAddRequest, RemoteWork>();
-        CreateMap<RemoteWorkUpdateRequest, RemoteWork>();
+    
     }
 }

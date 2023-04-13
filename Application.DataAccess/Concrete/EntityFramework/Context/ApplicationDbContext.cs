@@ -1,6 +1,4 @@
-﻿using Application.Core.Entities.Concrete;
-using Application.DataAccess.Entities;
-using Application.DataAccess.Entities.Concrete;
+﻿using Application.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.DataAccess.Concrete.EntityFramework.Context
@@ -18,14 +16,8 @@ namespace Application.DataAccess.Concrete.EntityFramework.Context
         }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :base(options) { }
 
-        public DbSet<Holiday> Holidays { get; set; }
-        public DbSet<ApproveHistorie> ApproveHistories { get; set; }
-        public DbSet<Notice> Notices { get; set; }
-        public DbSet<EmployeeInfo> EmployeeInfos { get; set; }
-        public DbSet<RemoteWork> RemoteWorks { get; set; }
-        public DbSet<EmployeePermission> EmployeePermissions { get; set; }
-        public DbSet<Day> Days { get; set; }
-       
+        public DbSet<Log> Logs { get; set; }
+        public DbSet<App> Apps { get; set; }
 
 
         /// <summary>

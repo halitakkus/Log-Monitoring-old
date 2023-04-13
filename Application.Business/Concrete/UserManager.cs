@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Application.Business.Abstract;
 using Application.Core.Constants.Messages;
-using Application.Core.Entities.Concrete;
 using Application.Core.Utilities.Result;
+using Application.DataAccess.Entities;
 using Application.DataAccess.Services.Api;
 using FluentValidation;
 using Application.Packages.Hashing.Core.Service;

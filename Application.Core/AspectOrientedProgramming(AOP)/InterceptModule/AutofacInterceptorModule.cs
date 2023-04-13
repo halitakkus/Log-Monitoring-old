@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using System.Text;
-using Application.Packages.AOP.Attributes;
-using Application.Packages.AOP.Interceptor;
+using Application.Core.AspectOrientedProgramming.Attributes;
+using Application.Core.AspectOrientedProgramming.Interceptor;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Castle.DynamicProxy;
 using Module = Autofac.Module;
 
-namespace Application.Packages.AOP.InterceptModule
-{
+namespace Application.Core.AspectOrientedProgramming.InterceptModule;
+
     public class AutofacInterceptorModule : Module
     {
         private Assembly _assembly;
@@ -38,4 +35,4 @@ namespace Application.Packages.AOP.InterceptModule
                 .SingleInstance();
         }
     }
-}
+

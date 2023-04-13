@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Castle.DynamicProxy;
 
-namespace Application.Packages.AOP.Interceptor
-{
+namespace Application.Core.AspectOrientedProgramming.Interceptor;
+
     public abstract class MethodInterceptorBase : Attribute, IInterceptor
     {
         /// <summary>
@@ -17,4 +15,4 @@ namespace Application.Packages.AOP.Interceptor
         /// <param name="invocation"></param>
         public abstract void Intercept(IInvocation invocation);
     }
-}
+

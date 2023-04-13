@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
+using Application.Core.AspectOrientedProgramming.AOP.Interceptor;
 using Application.Core.Utilities.DependencyServiceTool;
-using Application.Packages.AOP.Interceptor;
 using Castle.DynamicProxy;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace Application.Packages.AOP.Aspects.Performance;
+namespace Application.Core.AspectOrientedProgramming.Aspects.Performance;
 
 public class PerformanceAspect : MethodInterceptor
 {

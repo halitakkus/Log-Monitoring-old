@@ -1,9 +1,9 @@
 ﻿using Application.Business.Abstract;
 using Application.Business.Concrete;
+using Application.Core.AspectOrientedProgramming.InterceptModule;
 using Application.Core.Configuration.Context;
 using Application.DataAccess.Abstract.Profile;
 using Application.DataAccess.Extensions;
-using Application.Packages.AOP.InterceptModule;
 using Autofac;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;

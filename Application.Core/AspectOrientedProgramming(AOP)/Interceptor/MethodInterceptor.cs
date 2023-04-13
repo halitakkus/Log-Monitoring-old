@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Application.Core.AspectOrientedProgramming.Interceptor;
 using Castle.DynamicProxy;
 
-namespace Application.Packages.AOP.Interceptor
-{
+namespace Application.Core.AspectOrientedProgramming.AOP.Interceptor;
+
     /// <summary>
     /// MethodInterceptor provides writing aspect.
     /// </summary>
@@ -66,4 +65,4 @@ namespace Application.Packages.AOP.Interceptor
             }
         }
     }
-}
+

@@ -1,6 +1,6 @@
-﻿using Application.Packages.AOP.Attributes;
-using FluentValidation;
+﻿using FluentValidation;
 using System;
+using Application.Core.AspectOrientedProgramming.Attributes;
 using Application.Core.Utilities.DataTransferObjects.RemoteWork;
 
 namespace Application.Business.ValidationRules.FluentValidation

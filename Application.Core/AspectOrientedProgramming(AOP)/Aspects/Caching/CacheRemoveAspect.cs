@@ -1,9 +1,9 @@
-﻿using Application.Core.Utilities.DependencyServiceTool;
-using Application.Packages.AOP.Interceptor;
+﻿using Application.Core.AspectOrientedProgramming.AOP.Interceptor;
+using Application.Core.Utilities.DependencyServiceTool;
 using Application.Packages.Caching.Core.Service;
 using Castle.DynamicProxy;
 
-namespace Application.Packages.AOP.Aspects.Caching;
+namespace Application.Core.AspectOrientedProgramming.Aspects.Caching;
 
 public class CacheRemoveAspect :  MethodInterceptor
 {

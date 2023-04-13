@@ -3,8 +3,8 @@ using System.Linq;
 using System.Reflection;
 using Castle.DynamicProxy;
 
-namespace Application.Packages.AOP.Interceptor
-{
+namespace Application.Core.AspectOrientedProgramming.Interceptor;
+
     public class AspectInterceptorSelector : IInterceptorSelector
     {
         public IInterceptor[] SelectInterceptors(Type type, MethodInfo method, IInterceptor[] interceptors)
@@ -22,4 +22,4 @@ namespace Application.Packages.AOP.Interceptor
             return classAttributes.OrderBy(i => i.Priority).ToArray();
         }
     }
-}
+

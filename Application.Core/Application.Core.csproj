@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="6.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0" />
@@ -32,7 +34,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="AspectOrientedProgramming(AOP)" />
     <Folder Include="Utilities\DataTransferObjects(DTO)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application.Packages.Caching.Core\Application.Packages.Caching.Core.csproj" />
   </ItemGroup>
 
 </Project>

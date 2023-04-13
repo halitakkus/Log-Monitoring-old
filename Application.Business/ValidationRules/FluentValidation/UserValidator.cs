@@ -1,9 +1,6 @@
 ﻿using Application.Core.Entities.Concrete;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Application.Packages.AOP.Attributes;
+using Application.Core.AspectOrientedProgramming.Attributes;
 
 namespace Application.Business.ValidationRules.FluentValidation
 {

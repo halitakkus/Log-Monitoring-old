@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Application.Packages.AOP.Interceptor;
+using Application.Core.AspectOrientedProgramming.AOP.Interceptor;
 using Castle.DynamicProxy;
 
-namespace Application.Packages.AOP.Aspects.Exception
+namespace Application.Core.AspectOrientedProgramming.Aspects.Exception
 {
     /// <summary>
     /// ExceptionAspect works when method is throwing exception

@@ -2,7 +2,7 @@
 using FluentValidation.Results;
 using System.Threading.Tasks;
 
-namespace Application.Packages.AOP.Aspects.Validation;
+namespace Application.Core.AspectOrientedProgramming.Aspects.Validation;
 
 public static class ValdationTool
 {

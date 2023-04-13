@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Application.Core.AspectOrientedProgramming.AOP.Interceptor;
 using Application.Core.Utilities.Result;
-using Application.Packages.AOP.Interceptor;
 using Castle.DynamicProxy;
 using FluentValidation;
 
-namespace Application.Packages.AOP.Aspects.Validation;
+namespace Application.Core.AspectOrientedProgramming.Aspects.Validation;
 
 public class ValidationAspect<T> : MethodInterceptor
     where T : class

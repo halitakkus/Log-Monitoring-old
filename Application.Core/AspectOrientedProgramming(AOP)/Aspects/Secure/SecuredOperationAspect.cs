@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
+using Application.Core.AspectOrientedProgramming.AOP.Interceptor;
 using Application.Core.Utilities.DependencyServiceTool;
-using Application.Packages.AOP.Interceptor;
 using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Packages.AOP.Aspects.Secure;
+namespace Application.Core.AspectOrientedProgramming.AOP.Aspects.Secure;
 
 public class SecuredOperationAspect : MethodInterceptor
 {

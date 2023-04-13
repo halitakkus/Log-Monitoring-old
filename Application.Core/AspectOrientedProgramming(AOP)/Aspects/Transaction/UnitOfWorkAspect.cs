@@ -1,9 +1,9 @@
 ﻿using System.Transactions;
-using Application.Packages.AOP.Interceptor;
+using Application.Core.AspectOrientedProgramming.AOP.Interceptor;
 using Castle.DynamicProxy;
 
-namespace Application.Packages.AOP.Aspects.Transaction
-{
+namespace Application.Core.AspectOrientedProgramming.Aspects.Transaction;
+
     /// <summary>
     /// UnitOfWorkAspect works when method did not work successfully. Throws expected exception after transaction.
     /// </summary>
@@ -28,4 +28,4 @@ namespace Application.Packages.AOP.Aspects.Transaction
             }
         }
     }
-}
+

@@ -19,14 +19,12 @@
   <ItemGroup>
     <ProjectReference Include="..\Application.Business\Application.Business.csproj" />
     <ProjectReference Include="..\Application.Core\Application.Core.csproj" />
-    <ProjectReference Include="..\Application.Packages.AOP\Application.Packages.AOP.csproj" />
     <ProjectReference Include="..\Application.Packages.Caching.Core\Application.Packages.Caching.Core.csproj" />
     <ProjectReference Include="..\Application.Packages.Caching.InMemory\Application.Packages.Caching.InMemory.csproj" />
     <ProjectReference Include="..\Application.Packages.Caching.Redis\Application.Packages.Caching.Redis.csproj" />
     <ProjectReference Include="..\Application.Packages.Hashing.Core\Application.Packages.Hashing.Core.csproj" />
     <ProjectReference Include="..\Application.Packages.Hashing.MD5\Application.Packages.Hashing.MD5.csproj" />
     <ProjectReference Include="..\Application.Packages.Hashing.SHA256\Application.Packages.Hashing.SHA256.csproj" />
-    <ProjectReference Include="..\Application.Packages.HttpClient\Application.Packages.HttpClient.csproj" />
     <ProjectReference Include="..\Application.Packages.JWT\Application.Packages.JWT.csproj" />
     <ProjectReference Include="..\Application.Packages.MinIO\Application.Packages.MinIO.csproj" />
     <ProjectReference Include="..\Application.Packages.RabbitMQ\Application.Packages.RabbitMQ.csproj" />

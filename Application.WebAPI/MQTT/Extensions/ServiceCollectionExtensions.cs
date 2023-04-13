@@ -1,5 +1,4 @@
-﻿using Application.Business.Concrete;
-using Application.Packages.RabbitMQ.Subscriber;
+﻿using Application.Packages.RabbitMQ.Subscriber;
 using Application.WebAPI.MQTT.Subscribers.Concrate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;

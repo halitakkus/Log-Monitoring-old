@@ -1,6 +1,7 @@
 ﻿using System;
 using Application.DataAccess.Entities.Concrete;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -116,5 +117,7 @@ namespace Application.DataAccess.Abstract.Repository
         TEntity Find(Expression<Func<TEntity, bool>> expression);
 
         IList<TEntity> FindAll(Expression<Func<TEntity, bool>> expression);
+
+        IQueryable GetQueryable(Expression<Func<TEntity, bool>> expression);
     }
 }

@@ -226,6 +226,16 @@ namespace Application.DataAccess.Concrete.EntityFramework.Repository
                 using var cnt = new ApplicationDbContext(GetDbOption());
                 return cnt.Set<TEntity>().Where(w => !w.DeletedDate.HasValue).Where(expression).AsNoTracking().ToList();
             }
+        } 
+        
+        public IQueryable GetQueryable(Expression<Func<TEntity, bool>> expression)
+        {
+            using (var context = new ApplicationDbContext(_connectionString))
+            {
+                using var cnt = new ApplicationDbContext(GetDbOption());
+                return cnt.Set<TEntity>().Where(w => !w.DeletedDate.HasValue).Where(expression).AsNoTracking()
+                    .AsQueryable();
+            }
         }
     }
 }

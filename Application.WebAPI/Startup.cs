@@ -1,6 +1,4 @@
-﻿using Application.Business.Abstract;
-using Application.Business.Concrete;
-using Application.Business.Extensions;
+﻿using Application.Business.Extensions;
 using Application.Core.Configuration.Context;
 using Application.Core.Configuration.Environment;
 using Application.Core.Extensions;
@@ -16,7 +14,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
-using Application.Packages.HttpClientService.Extensions;
 using Application.Packages.RabbitMQ.Extensions;
 using Application.WebAPI.MQTT.Extensions;
 
@@ -89,7 +86,7 @@ namespace Application.WebAPI
             services.AddCors();
 
             services.AddSubscribers();
-            services.AddHttpClientService();
+            
             // Register core module. 🎉
             services.AddCoreModule();
 

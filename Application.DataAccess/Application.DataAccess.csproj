@@ -24,10 +24,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application.Core\Application.Core.csproj" />
-    <ProjectReference Include="..\Application.Entities\Application.Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

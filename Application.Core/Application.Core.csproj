@@ -35,7 +35,6 @@
 
   <ItemGroup>
     <Folder Include="AspectOrientedProgramming(AOP)" />
-    <Folder Include="Utilities\DataTransferObjects(DTO)" />
   </ItemGroup>
 
   <ItemGroup>

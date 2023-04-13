@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using LogMonitoring.MVC.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace LogMonitoring.MVC.Controllers;
 
@@ -15,6 +13,4 @@ public class LoginController : Controller
         
         return View();
     }
-    
-     
 }

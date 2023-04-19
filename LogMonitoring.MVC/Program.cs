@@ -1,9 +1,13 @@
+using LogMonitoring.MVC.Services.HttpClientService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+builder.Services.AddSingleton<IHttpService, HttpService>();
 
 var app = builder.Build();
 

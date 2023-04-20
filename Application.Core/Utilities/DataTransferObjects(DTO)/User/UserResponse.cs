@@ -5,6 +5,7 @@ public class UserResponse
     public int Id { get; set; }
     public string Ad { get; set; }
     public string Soyad { get; set; }
+    public string SicilNo { get; set; }
     public string Gorevi { get; set; }
     public string Telefon { get; set; }
     public string TelefonAyrinti { get; set; }
@@ -15,5 +16,5 @@ public class UserResponse
     public string Mail { get; set; }
     public string Enstitu { get; set; }
     public bool OnemliNumarami { get; set; }
-    public string ProfilFotografi { get; set; }
+    public string ProfilResmi { get; set; }
 }

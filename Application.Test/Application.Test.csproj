@@ -29,7 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application.DataAccess\Application.DataAccess.csproj" />
-    <ProjectReference Include="..\Application.WebAPI\LogMonitoring.WebAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

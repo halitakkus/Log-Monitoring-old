@@ -15,24 +15,15 @@ public class UserSevice : IUserService
         _httpService = httpService;
     }
     
-    public async Task<User> GetUserByTokenAsync(string token)
+    public async Task<UserResponse> GetUserByTokenAsync(string token)
     {
-        return await _httpService.PostAsync<User>("profilbilgilerinigetir",new UserRequest(null), token);
+        return await _httpService.PostAsync<UserResponse>("profilbilgilerinigetir",new UserRequest(null), token);
     }
 
-    public async Task<User> GetOtherUserAsync(string token, int userId)
+    public async Task<UserResponse> GetOtherUserAsync(string token, int userId)
     {
-        var user = await _httpService.PostAsync<User>("profilbilgilerinigetir", new UserRequest(userId), token);
+        var user = await _httpService.PostAsync<UserResponse>("profilbilgilerinigetir", new UserRequest(userId), token);
 
         return user;
-    }
-
-    public async Task<List<SearcUserResponse>> GetSearchUsersAsync(string token, string searchText)
-    {
-        var searchModel = new SearchUserRequest(searchText);
-
-        var searchUsers = await _httpService.PostAsync<List<SearcUserResponse>>("personelArama", searchModel, token);
-
-        return searchUsers;
     }
 }

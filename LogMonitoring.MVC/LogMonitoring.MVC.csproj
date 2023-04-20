@@ -72,4 +72,9 @@
       <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Application.Business\Application.Business.csproj" />
+      <ProjectReference Include="..\Application.Packages.Hashing.MD5\Application.Packages.Hashing.MD5.csproj" />
+    </ItemGroup>
+
 </Project>

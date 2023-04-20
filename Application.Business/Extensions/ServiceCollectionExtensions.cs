@@ -6,6 +6,7 @@ using Application.DataAccess.Abstract.Profile;
 using Application.DataAccess.Extensions;
 using Autofac;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.Business.Extensions
@@ -34,6 +35,7 @@ namespace Application.Business.Extensions
             services.AddSingleton<IUserManager, UserManager>();
             services.AddSingleton<ISettingManager, SettingManager>();
             services.AddSingleton<IRemoteWorkManager, RemoteWorkManager>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             return services;
         }

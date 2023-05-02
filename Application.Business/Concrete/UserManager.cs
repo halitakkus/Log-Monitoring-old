@@ -25,7 +25,8 @@ namespace Application.Business.Concrete
        
         public async Task<IDataResult<UserResponse>> GetUserByTokenAsync(string token)
         {
-            if(string.IsNullOrEmpty(token)) return new ErrorDataResult<UserResponse>(ResultMessages.EmptyOrNullContent, ResultMessages.EmptyOrNullContent);
+            if(string.IsNullOrEmpty(token)) 
+                return new ErrorDataResult<UserResponse>(ResultMessages.EmptyOrNullContent, ResultMessages.EmptyOrNullContent);
             
             var user = await _userService.GetUserByTokenAsync(token);
 

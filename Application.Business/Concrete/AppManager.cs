@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Application.Business.Abstract;
 using Application.Core.Utilities.DataTransferObjects_DTO_;
 using Application.Core.Utilities.DataTransferObjects_DTO_.App;
@@ -6,6 +8,7 @@ using Application.Core.Utilities.Result;
 using Application.DataAccess.Abstract;
 using Application.DataAccess.Entities;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Business.Concrete;
 
@@ -29,16 +32,15 @@ public class AppManager : IAppManager
         return new SuccessDataResult<IEnumerable<AppResponse>>(appsResponse);
     }
 
-    public IResult Insert(AppRequest request)
+    public IDataResult<AppResponse> GetById(Guid id)
     {
-        var app = _mapper.Map<App>(request);
-        var check = _appDal.Add(app);
+        var app = _appDal.GetById(id);
 
-        if (!check) return new ErrorResult();
-        
-        return new SuccessResult();
+        var appResponse = _mapper.Map<AppResponse>(app);
+
+        return new SuccessDataResult<AppResponse>(appResponse);
     }
-    
+
     public IResult Remove(RemoveEntityDTO request)
     {
         var entity = _appDal.GetById(request.Id);

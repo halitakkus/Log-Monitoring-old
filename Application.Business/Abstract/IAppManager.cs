@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Application.Business.ValidationRules.FluentValidation;
 using Application.Core.AspectOrientedProgramming.Aspects.Validation;
 using Application.Core.Utilities.DataTransferObjects_DTO_;
@@ -10,9 +11,9 @@ namespace Application.Business.Abstract;
 public interface IAppManager
 {
     IDataResult<IEnumerable<AppResponse>> GetList();
+    IDataResult<AppResponse> GetById(Guid id);
 
     [ValidationAspect<IResult>(typeof(AppValidation.AppRequestValidator), Priority = 1)]
-    IResult Insert(AppRequest request);
 
     IResult Remove(RemoveEntityDTO request);
 }

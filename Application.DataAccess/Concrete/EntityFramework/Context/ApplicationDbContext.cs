@@ -28,7 +28,9 @@ namespace Application.DataAccess.Concrete.EntityFramework.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql(_connectionString);
+                optionsBuilder
+                    .UseLazyLoadingProxies()
+                    .UseNpgsql(_connectionString);
             }
         }
     }

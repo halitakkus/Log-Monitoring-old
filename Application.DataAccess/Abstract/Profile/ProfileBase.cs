@@ -1,4 +1,5 @@
 ﻿using Application.Core.Utilities.DataTransferObjects_DTO_.App;
+using Application.Core.Utilities.DataTransferObjects_DTO_.Log;
 using Application.Core.Utilities.DataTransferObjects.User;
 using Application.DataAccess.Entities;
 
@@ -10,5 +11,7 @@ public class ProfileBase : AutoMapper.Profile
     {
         CreateMap<App, AppResponse>();
         CreateMap<AppRequest, App>();
+        
+        CreateMap<Log, LogResponse>();
     }
 }

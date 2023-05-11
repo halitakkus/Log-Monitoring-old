@@ -34,7 +34,6 @@ namespace Application.Business.Extensions
 
             services.AddSingleton<IUserManager, UserManager>();
             services.AddSingleton<ISettingManager, SettingManager>();
-            services.AddSingleton<IRemoteWorkManager, RemoteWorkManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             return services;

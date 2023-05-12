@@ -1,6 +1,7 @@
 ﻿@using LogMonitoring.MVC.Services.Session
 @using LogMonitoring.MVC.Constant
 @using Application.Core.Utilities.DataTransferObjects.User
+@using Application.Core.Utilities.DataTransferObjects_DTO_.App
 @inject ISessionService SessionService
 
 @{ var CurrentUser = SessionService.Get<UserResponse>(SessionKey.CurrentUser); }
@@ -529,11 +530,14 @@
                 <div class="col-sm-6">
                     <div class="text-sm-end d-none d-sm-block">
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-outline-secondary">Araç Talep</button>
-                            <button type="button" class="btn btn-outline-secondary">Servis Tübitak</button>
-                            <button type="button" class="btn btn-outline-secondary">Uzaktan Çalışma</button>
-                            <button type="button" class="btn btn-primary">Seyahat Talebi</button>
-                            <button type="button" class="btn btn-outline-secondary">Umkc</button>
+                        @{
+                            var apps = (List<AppResponse>)TempData["apps"];
+
+                            foreach (var app in apps)
+                            {
+                                <button type="button" onclick="alert('@app.Id')" class="btn btn-outline-secondary">@app.Name</button>
+                            }
+                        }
                         </div>
                     </div>
                 </div>

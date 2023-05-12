@@ -67,7 +67,6 @@ namespace Application.DataAccess.Concrete.EntityFramework.Repository
                     (Expression<Func<TEntity, bool>>)(entity => (bool)entity.Id.Equals((object)id)));
             }
         }
-
         public async Task<TEntity> GetByIdAsync(TKey id)
         {
             using (var context = new ApplicationDbContext(_connectionString))

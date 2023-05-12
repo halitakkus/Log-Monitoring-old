@@ -34,6 +34,7 @@ namespace Application.Business.Extensions
 
             services.AddSingleton<IUserManager, UserManager>();
             services.AddSingleton<ILogManager, LogManager>();
+            services.AddSingleton<IAppManager, AppManager>();
             services.AddSingleton<ISettingManager, SettingManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

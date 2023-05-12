@@ -26,7 +26,7 @@ public class AppController: Controller
         return Json(response);
     }
     
-    [HttpGet]
+    [HttpGet("apps")]
     public IActionResult GetList()
     {
         var response = _appManager.GetList();

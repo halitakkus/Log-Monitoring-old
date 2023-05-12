@@ -12,7 +12,7 @@ public class StatisticController : Controller
         _logManager = logManager;
     }
     
-    [HttpGet("{id}")]
+    [HttpGet("column-chart-statistics/{id}")]
     public IActionResult GetColumnChartStatisticsByAppId(Guid id)
     {
         var response = _logManager.StatisticColumnChart(id);

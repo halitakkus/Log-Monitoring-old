@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Application.Core.Utilities.DataTransferObjects_DTO_.App
+@{
     ViewData["Title"] = "Log Monitoring";
 }
 <div class="container-fluid">
@@ -23,15 +24,15 @@
 
 <div class="row">
     <div class="col-xl-4">
-<div class="bg-primary opacity-50 p-4">
-                                                <h5 class="my-2 text-white">Log Monitoring <i class="dripicons-monitor"></i> </h5>
-                                            </div>
+        <div class="bg-primary opacity-50 p-4">
+            <h5 class="my-2 text-white">Log Monitoring <i class="dripicons-monitor"></i> </h5>
+        </div>
         <div class="card">
             <div class="card-body">
-              
+
                 <div class="row">
                     <div class="col-sm-6">
-                       
+
                         <h3>$34,252</h3>
                         <p class="text-muted"><span class="text-success me-2"> 12% <i class="mdi mdi-arrow-up"></i> </span> From previous period</p>
 
@@ -62,21 +63,21 @@
                             </div>
                         </div>
                     </li>
-                     <li class="event-list">
-                                            <div class="event-timeline-dot">
-                                                <i class="bx bx-right-arrow-circle font-size-18"></i>
-                                            </div>
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <h5 class="font-size-14">22 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <div>
-                                                        Responded to need “Volunteer Activities
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                    <li class="event-list">
+                        <div class="event-timeline-dot">
+                            <i class="bx bx-right-arrow-circle font-size-18"></i>
+                        </div>
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <h5 class="font-size-14">22 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div>
+                                    Responded to need “Volunteer Activities
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li class="event-list">
                         <div class="event-timeline-dot">
                             <i class="bx bx-right-arrow-circle font-size-18"></i>
@@ -122,8 +123,8 @@
                             </div>
                         </div>
                     </li>
-                    
-                   
+
+
                     <li class="event-list">
                         <div class="event-timeline-dot">
                             <i class="bx bx-right-arrow-circle font-size-18"></i>
@@ -139,143 +140,78 @@
                             </div>
                         </div>
                     </li>
-                      <li class="event-list">
-                                            <div class="event-timeline-dot">
-                                                <i class="bx bx-right-arrow-circle font-size-18"></i>
-                                            </div>
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-0 me-3">
-                                                    <h5 class="font-size-14">12 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <div>
-                                                        Responded to need “In-Kind Opportunity”
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                    <li class="event-list">
+                        <div class="event-timeline-dot">
+                            <i class="bx bx-right-arrow-circle font-size-18"></i>
+                        </div>
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <h5 class="font-size-14">12 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div>
+                                    Responded to need “In-Kind Opportunity”
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="col-xl-8">
-        
-                                       <div class="card">
-                                           <div class="card-body">
-                                               <h4 class="card-title">Deposits</h4>
-       
-                                               <div class="row">
-                                                   <div class="col-lg-4">
-                                                       <div class="border p-3 rounded mt-4">
-                                                           <div class="d-flex align-items-center mb-3">
-                                                               <div class="avatar-xs me-3">
-                                                                   <span class="avatar-title rounded-circle bg-warning bg-soft text-warning font-size-18">
-                                                                       <i class="mdi mdi-bitcoin"></i>
-                                                                   </span>
-                                                               </div>
-                                                               <h5 class="font-size-14 mb-0">Bitcoin</h5>
-                                                           </div>
-       
-                                                           <div class="row">
-                                                               <div class="col-lg-6">
-                                                                   <div class="text-muted mt-3">
-                                                                       <p>Annual Yield</p>
-                                                                       <h4>4.05 %</h4>
-                                                                       <p class="mb-0">0.00745 BTC</p>
-                                                                       
-                                                                   </div>
-                                                               </div>
-       
-                                                               <div class="col-lg-6 align-self-end">
-                                                                   <div class="float-end mt-3">
-                                                                       <a href="javascript: void(0);" class="btn btn-primary">Select</a>
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-lg-4">
-                                                       <div class="border p-3 rounded mt-4">
-                                                           <div class="d-flex align-items-center mb-3">
-                                                               <div class="avatar-xs me-3">
-                                                                   <span class="avatar-title rounded-circle bg-primary bg-soft text-primary font-size-18">
-                                                                       <i class="mdi mdi-ethereum"></i>
-                                                                   </span>
-                                                               </div>
-                                                               <h5 class="font-size-14 mb-0">Ethereum</h5>
-                                                           </div>
-       
-                                                           <div class="row">
-                                                               <div class="col-lg-6">
-                                                                   <div class="text-muted mt-3">
-                                                                       <p>Annual Yield</p>
-                                                                       <h4>5.08 %</h4>
-                                                                       <p class="mb-0">0.0056 ETH</p>
-                                                                   </div>
-                                                               </div>
-       
-                                                               <div class="col-lg-6 align-self-end">
-                                                                   <div class="float-end mt-3">
-                                                                       <a href="javascript: void(0);" class="btn btn-primary">Select</a>
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                                   <div class="col-lg-4">
-                                                       <div class="border p-3 rounded mt-4">
-                                                           <div class="d-flex align-items-center mb-3">
-                                                               <div class="avatar-xs me-3">
-                                                                   <span class="avatar-title rounded-circle bg-info bg-soft text-info font-size-18">
-                                                                       <i class="mdi mdi-litecoin"></i>
-                                                                   </span>
-                                                               </div>
-                                                               <h5 class="font-size-14 mb-0">Litecoin</h5>
-                                                           </div>
-       
-                                                           <div class="row">
-                                                               <div class="col-lg-6">
-                                                                   <div class="text-muted mt-3">
-                                                                       <p>Annual Yield</p>
-                                                                       <h4>4.12 %</h4>
-                                                                       <p class="mb-0">0.00245 LTC</p>
-                                                                       
-                                                                   </div>
-                                                               </div>
-       
-                                                               <div class="col-lg-6 align-self-end">
-                                                                   <div class="float-end mt-3">
-                                                                       <a href="javascript: void(0);" class="btn btn-primary">Select</a>
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                               
-                                           </div>
-                                       </div>
-                                     
-                                  
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Uygulamalar</h4>
+
+                <div class="row">
+                    @{
+                        var apps = (List<AppResponse>)TempData["apps"];
+
+                        foreach (var app in apps)
+                        {
+                            <div class="col-lg-4">
+                                <div class="border p-3 rounded mt-4">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="avatar-xs me-3">
+                                            <span class="avatar-title rounded-circle bg-warning bg-soft text-warning font-size-18">
+                                                <i class="mdi mdi-bitcoin"></i>
+                                            </span>
+                                        </div>
+                                        <h5 class="font-size-14 mb-0">@app.Name</h5>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="text-muted mt-3">
+                                                <p>Annual Yield</p>
+                                                <h4>4.05 %</h4>
+                                                <p class="mb-0">0.00745 BTC</p>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+
+                </div>
+            </div>
+        </div>
+
+
         <!-- end row -->
 
         <div class="card">
             <div class="card-body">
                 <div class="d-sm-flex flex-wrap">
-                    <h4 class="card-title mb-4">Email Sent</h4>
-                    <div class="ms-auto">
-                        <ul class="nav nav-pills">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Week</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Month</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#">Year</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <h4 class="card-title mb-4">Aylara Göre Hata Seviyeleri 🚀</h4>
+
                 </div>
 
                 <div id="stacked-column-chart" data-colors='["--bs-primary", "--bs-warning", "--bs-success"]' class="apex-charts" dir="ltr"></div>

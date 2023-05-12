@@ -7,6 +7,7 @@ using Application.Packages.Hashing.MD5.Extensions;
 using Application.Packages.JWT.Entities;
 using Application.Packages.JWT.Extensions;
 using LogMonitoring.MVC.Services.Session;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,11 @@ builder.Services.AddCoreModule();
 builder.Services.AddSession();
 // Register business module. 🎉
 builder.Services.AddBusinessModule(ConfigurationContext);
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Central Log Monitorning", Version = "v1" });
+});
 
 
 builder.Services.AddMD5();
@@ -50,6 +56,11 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Central Log Monitorning");
+});
 app.UseRouting();
 app.UseSession();
 app.UseAuthorization();

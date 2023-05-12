@@ -20,18 +20,12 @@ namespace Application.DataAccess.Entities.Concrete
         /// </summary>
         public DateTime CreatedDate { get; set; }
 
-        public string? CreatedUsername { get; set; }
-
         /// <summary>
         /// Date of last modification.
         /// </summary>
         public DateTime? ModifiedDate { get; set; }
 
-        public string? ModifiedUsername { get; set; }
 
         public DateTime? DeletedDate { get; set; }
-        public bool IsDeleted { get; set; }
-
-        public string? DeletedUsername { get; set; }
     }
 }

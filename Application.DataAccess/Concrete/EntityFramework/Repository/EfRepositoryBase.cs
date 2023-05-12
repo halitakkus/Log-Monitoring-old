@@ -29,8 +29,8 @@ namespace Application.DataAccess.Concrete.EntityFramework.Repository
         {
             using (var context = new ApplicationDbContext(_connectionString))
             {
-                entity.CreatedDate = DateTime.Now;
-                entity.ModifiedDate = DateTime.Now;
+                entity.CreatedDate = DateTime.UtcNow;
+                entity.ModifiedDate = DateTime.UtcNow;
 
                 context.Attach<TEntity>(entity).State = EntityState.Added;
                 return context.SaveChanges() > 0;
@@ -52,8 +52,6 @@ namespace Application.DataAccess.Concrete.EntityFramework.Repository
             {
                 entity.CreatedDate = DateTime.UtcNow;
                 entity.ModifiedDate = DateTime.UtcNow;
-                entity.CreatedUsername = "Test";
-                entity.ModifiedUsername = "Test";
                 context.Attach<TEntity>(entity).State = EntityState.Added;
                 return await context.SaveChangesAsync() > 0;
             }
@@ -124,7 +122,7 @@ namespace Application.DataAccess.Concrete.EntityFramework.Repository
             {
                 var entity = GetById(id);
 
-                entity.IsDeleted = true;
+                entity.DeletedDate = DateTime.Now;
 
                 context.Attach<TEntity>(entity).State = EntityState.Modified;
                 return context.SaveChanges() > 0;
@@ -137,7 +135,7 @@ namespace Application.DataAccess.Concrete.EntityFramework.Repository
             {
                 var entity = await GetByIdAsync(id);
 
-                entity.IsDeleted = true;
+                entity.DeletedDate = DateTime.Now;
 
                 context.Attach<TEntity>(entity).State = EntityState.Modified;
                 return await context.SaveChangesAsync() > 0;
@@ -177,7 +175,6 @@ namespace Application.DataAccess.Concrete.EntityFramework.Repository
             using (var context = new ApplicationDbContext(_connectionString))
             {
                 entity.ModifiedDate = DateTime.UtcNow;
-                entity.ModifiedUsername = "Test U";
 
                 context.Attach<TEntity>(entity).State = EntityState.Modified;
                 return context.SaveChanges() > 0;
@@ -189,7 +186,6 @@ namespace Application.DataAccess.Concrete.EntityFramework.Repository
             using (var context = new ApplicationDbContext(_connectionString))
             {
                 entity.ModifiedDate = DateTime.UtcNow;
-                entity.ModifiedUsername = "Test U";
 
                 context.Attach<TEntity>(entity).State = EntityState.Modified;
 

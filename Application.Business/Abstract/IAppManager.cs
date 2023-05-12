@@ -13,4 +13,5 @@ public interface IAppManager
     IDataResult<IEnumerable<AppResponse>> GetList();
     IDataResult<AppResponse> GetById(Guid id);
     IResult Remove(RemoveEntityDTO request);
+    IResult Insert(AppRequest request);
 }

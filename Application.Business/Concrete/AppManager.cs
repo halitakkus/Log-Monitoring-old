@@ -7,6 +7,7 @@ using Application.Core.Utilities.DataTransferObjects_DTO_;
 using Application.Core.Utilities.DataTransferObjects_DTO_.App;
 using Application.Core.Utilities.Result;
 using Application.DataAccess.Abstract;
+using Application.DataAccess.Entities;
 using AutoMapper;
 
 namespace Application.Business.Concrete;
@@ -49,6 +50,20 @@ public class AppManager : IAppManager
 
         if (!check) return new ErrorResult();
         
+        return new SuccessResult();
+    }
+
+    public IResult Insert(AppRequest request)
+    {
+        var app = _mapper.Map<App>(request);
+
+        var check = _appDal.Add(app);
+
+        if (!check)
+        {
+            return new ErrorResult();
+        }
+
         return new SuccessResult();
     }
 }

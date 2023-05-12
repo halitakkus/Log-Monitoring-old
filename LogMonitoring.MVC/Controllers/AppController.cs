@@ -1,5 +1,6 @@
 ﻿using Application.Business.Abstract;
 using Application.Core.Utilities.DataTransferObjects_DTO_;
+using Application.Core.Utilities.DataTransferObjects_DTO_.App;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppController.MVC.Controllers;
@@ -17,6 +18,19 @@ public class AppController: Controller
     public IActionResult GetById(Guid id)
     {
         var response = _appManager.GetById(id);
+
+        if (response is null || !response.IsSuccess)
+        {
+            return View("Error");
+        }
+        
+        return Json(response);
+    }
+    
+    [HttpPost("create-app")]
+    public IActionResult InsertApp(AppRequest request)
+    {
+        var response = _appManager.Insert(request);
 
         if (response is null || !response.IsSuccess)
         {

@@ -32,6 +32,7 @@ namespace Application.DataAccess.Extensions
             services.AddSingleton<IUserService, UserSevice>();
             services.AddSingleton<ISettingDal, SettingDal>();
             services.AddSingleton<IAppDal, AppDal>();
+            services.AddSingleton<ILogDal, LogDal>();
         }
     }
 }

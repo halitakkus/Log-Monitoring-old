@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Application.Business.Abstract;
 using Application.Core.Utilities.DataTransferObjects_DTO_;
 using Application.Core.Utilities.DataTransferObjects_DTO_.App;
 using Application.Core.Utilities.Result;
 using Application.DataAccess.Abstract;
-using Application.DataAccess.Entities;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Business.Concrete;
 

@@ -2,17 +2,16 @@
 using Application.Core.Utilities.DataTransferObjects_DTO_;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LogMonitoring.MVC.Controllers;
+namespace AppController.MVC.Controllers;
 
-public class LogController: Controller
+public class AppController: Controller
 {
     private readonly IAppManager _appManager;
     
-    public LogController(IAppManager appManager)
+    public AppController(IAppManager appManager)
     {
         _appManager = appManager;
     }
-    
     
     [HttpGet("{id}")]
     public IActionResult GetById(Guid id)

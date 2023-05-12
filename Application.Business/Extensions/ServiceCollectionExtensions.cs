@@ -33,6 +33,7 @@ namespace Application.Business.Extensions
             services.AddDataAccessModule(configurationContext);
 
             services.AddSingleton<IUserManager, UserManager>();
+            services.AddSingleton<ILogManager, LogManager>();
             services.AddSingleton<ISettingManager, SettingManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

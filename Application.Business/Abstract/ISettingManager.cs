@@ -13,5 +13,5 @@ namespace Application.Business.Abstract
         /// <returns></returns>
         [CacheAspect]
         IDataResult<IEnumerable<SettingResponse>> GetList();
-    }
+    } 
 }

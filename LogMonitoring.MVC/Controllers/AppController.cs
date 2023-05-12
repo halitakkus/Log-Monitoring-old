@@ -14,7 +14,6 @@ public class AppController: Controller
         _appManager = appManager;
     }
     
-    [HttpGet("{id}")]
     public IActionResult GetById(Guid id)
     {
         var response = _appManager.GetById(id);
@@ -27,7 +26,6 @@ public class AppController: Controller
         return Json(response);
     }
     
-    [HttpPost("create-app")]
     public IActionResult InsertApp(AppRequest request)
     {
         var response = _appManager.Insert(request);
@@ -40,7 +38,6 @@ public class AppController: Controller
         return Json(response);
     }
     
-    [HttpGet("apps")]
     public IActionResult GetList()
     {
         var response = _appManager.GetList();
@@ -53,7 +50,6 @@ public class AppController: Controller
         return Json(response);
     }
     
-    [HttpDelete("{id}")]
     public IActionResult Remove(RemoveEntityDTO removeEntityDto)
     {
         var response = _appManager.Remove(removeEntityDto);

@@ -11,7 +11,6 @@ namespace Application.Business.Abstract
         /// Gets the list of all entity objects.
         /// </summary>
         /// <returns></returns>
-        [CacheAspect]
         IDataResult<IEnumerable<SettingResponse>> GetList();
     } 
 }

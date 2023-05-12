@@ -12,8 +12,5 @@ public interface IAppManager
 {
     IDataResult<IEnumerable<AppResponse>> GetList();
     IDataResult<AppResponse> GetById(Guid id);
-
-    [ValidationAspect<IResult>(typeof(AppValidation.AppRequestValidator), Priority = 1)]
-
     IResult Remove(RemoveEntityDTO request);
 }

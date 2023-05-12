@@ -3,6 +3,7 @@ using Application.Core.Utilities.Result;
 using Application.DataAccess.Abstract;
 using AutoMapper;
 using System.Collections.Generic;
+using Application.Core.AspectOrientedProgramming.Aspects.Caching;
 using Application.Core.Utilities.DataTransferObjects.Setting;
 
 namespace Application.Business.Concrete
@@ -16,6 +17,8 @@ namespace Application.Business.Concrete
             _settingDal = settingDal;
             _mapper = mapper;
         }
+        
+        [CacheAspect]
         public IDataResult<IEnumerable<SettingResponse>> GetList()
         {
             var data = _settingDal.GetList();

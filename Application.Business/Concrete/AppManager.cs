@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Application.Business.Abstract;
+using Application.Business.ValidationRules.FluentValidation;
+using Application.Core.AspectOrientedProgramming.Aspects.Validation;
 using Application.Core.Utilities.DataTransferObjects_DTO_;
 using Application.Core.Utilities.DataTransferObjects_DTO_.App;
 using Application.Core.Utilities.Result;
@@ -38,6 +40,7 @@ public class AppManager : IAppManager
         return new SuccessDataResult<AppResponse>(appResponse);
     }
 
+    [ValidationAspect<IResult>(typeof(AppValidation.AppRequestValidator), Priority = 1)]
     public IResult Remove(RemoveEntityDTO request)
     {
         var entity = _appDal.GetById(request.Id);

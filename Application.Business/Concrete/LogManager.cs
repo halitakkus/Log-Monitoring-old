@@ -1,5 +1,6 @@
 ﻿using System;
 using Application.Business.Abstract;
+using Application.Core.AspectOrientedProgramming.Aspects.Exception;
 using Application.Core.Utilities.DataTransferObjects_DTO_.Log;
 using Application.Core.Utilities.Result;
 using Application.DataAccess.Abstract;
@@ -14,6 +15,7 @@ public class LogManager : ILogManager
         _logDal = logDal;
     }
     
+    [ExceptionAspect]
     public IDataResult<StatisticColumnChartResponse> StatisticColumnChart(Guid appId)
     {
         var columnChartResponse = _logDal.StatisticColumnChart(appId);

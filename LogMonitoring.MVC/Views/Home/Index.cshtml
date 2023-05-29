@@ -210,8 +210,20 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-sm-flex flex-wrap">
-                    <h4 class="card-title mb-4">Aylara Göre Hata Seviyeleri 🚀</h4>
-
+                    <span class="card-title mb-4">Aylara Göre Hata Seviyeleri 🚀 </span>
+  <div class="col-sm-6">
+                                        <div class="text-sm-end d-none d-sm-block">
+                                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                                  <button type="button" onclick="alert('tümü')" class="btn btn-outline-secondary">Tüm Uygulamalar</button>
+                                                @{
+                                                    foreach (var app in (List<AppResponse>)TempData["apps"])
+                                                    {
+                                                        <button type="button" onclick="alert('@app.Id')" class="btn btn-outline-secondary">@app.Name</button>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
                 </div>
 
                 <div id="stacked-column-chart" data-colors='["--bs-primary", "--bs-warning", "--bs-success"]' class="apex-charts" dir="ltr"></div>

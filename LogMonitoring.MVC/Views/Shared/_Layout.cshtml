@@ -527,20 +527,7 @@
                 <div class="col-sm-6">
                     <script>document.write(new Date().getFullYear())</script> © Tübitak Bilgem | Bilgi Teknolojileri | Yazılım Geliştirme Ekibi
                 </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-end d-none d-sm-block">
-                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                        @{
-                            var apps = (List<AppResponse>)TempData["apps"];
-
-                            foreach (var app in apps)
-                            {
-                                <button type="button" onclick="alert('@app.Id')" class="btn btn-outline-secondary">@app.Name</button>
-                            }
-                        }
-                        </div>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </footer>

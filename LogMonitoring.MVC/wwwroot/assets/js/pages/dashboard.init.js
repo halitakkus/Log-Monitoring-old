@@ -63,6 +63,7 @@ onload = (event) => {
             series.push(error)
             
             var linechartBasicColors = getChartColorsArray("stacked-column-chart");
+            linechartBasicColors[2] = "#b80046";
             linechartBasicColors && (options = {
                 chart: {
                     height: 360,

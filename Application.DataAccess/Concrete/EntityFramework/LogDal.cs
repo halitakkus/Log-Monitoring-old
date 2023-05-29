@@ -49,7 +49,7 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
         {
             var statisticColumnChart = context.Logs
                 .Where(i=> i.AppId == appId)
-                .GroupBy(e => new { e.App.Id, e.App.Name, Month = new DateTime(e.LogDate.Year, e.LogDate.Month, e.LogDate.Day) })
+                .GroupBy(e => new { e.App.Id, e.App.Name, Month = new DateTime(DateTime.Now.Year, e.LogDate.Month, e.LogDate.Day) })
                 .Select(g => new StatisticColumnChartResponse
                 {
                     AppId = g.Key.Id,

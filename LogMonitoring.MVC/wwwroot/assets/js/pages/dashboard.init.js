@@ -1,19 +1,29 @@
 var series = []
 
 onload = (event) => {
+    var info = {
+        name: "Info",
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
+
+    let warning = {
+        name: "Warning",
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
+    
+    let error = {
+        name: "Error",
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
+
     getColumnChartStatisticsByAppIdViaAjaxRequest("/Statistic/GetColumnChartStatisticsByAppId", "6e7aaa7f-ceb2-4c6e-bcb4-0ff9f33b3232")
         .then(result => {
+         
             result.data.columnChartModels.forEach(i=> {//Info için
                 
                 let dateObject = new Date(i.dateMon);
                 let dateMonth = dateObject.getMonth() + 1
-                let formattedDate = dateObject.toLocaleDateString('tr-TR');
-
-                let info = {
-                    name: "Info",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                }
-
+                
                 const foundEntry = i.statistics.find(entry => entry.key === info.name);
 
                 if(foundEntry)
@@ -21,53 +31,37 @@ onload = (event) => {
                     const foundValue = foundEntry.value
                     info.data[dateMonth - 1] = foundValue
                 }
-               
-                series.push(info)
             })
-
+            
             result.data.columnChartModels.forEach(i=> {// Warning için
                 let dateObject = new Date(i.dateMon);
                 let dateMonth = dateObject.getMonth() + 1
-                let formattedDate = dateObject.toLocaleDateString('tr-TR');
 
-                let info = {
-                    name: "Warning",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                }
-
-                const foundEntry = i.statistics.find(entry => entry.key === info.name);
+                const foundEntry = i.statistics.find(entry => entry.key === warning.name);
 
                 if(foundEntry)
                 {
                     const foundValue = foundEntry.value
-                    info.data[dateMonth - 1] = foundValue
+                    warning.data[dateMonth - 1] = foundValue
                 }
-
-                series.push(info)
             })
-
+            
             result.data.columnChartModels.forEach(i=> {//Error için
                 let dateObject = new Date(i.dateMon);
                 let dateMonth = dateObject.getMonth() + 1
-                let formattedDate = dateObject.toLocaleDateString('tr-TR');
 
-                let info = {
-                    name: "Error",
-                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-                }
-
-                const foundEntry = i.statistics.find(entry => entry.key === info.name);
+                const foundEntry = i.statistics.find(entry => entry.key === error.name);
 
                 if (foundEntry) {
                     const foundValue = foundEntry.value
-                    info.data[dateMonth - 1] = foundValue
+                    error.data[dateMonth - 1] = foundValue
                 }
-
-                series.push(info)
-            
-              
             })
 
+            series.push(info)
+            series.push(warning)
+            series.push(error)
+            
             var linechartBasicColors = getChartColorsArray("stacked-column-chart");
             linechartBasicColors && (options = {
                 chart: {

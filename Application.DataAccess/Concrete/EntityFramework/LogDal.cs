@@ -16,6 +16,7 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
 
     public LogDal(IApplicationConfigurationContext context) : base(context.ConnectionString)
     {
+        _configurationContext = context;
     }
 
     public StatisticsTotalLevelInfo StatisticsTotalLevelInfo()
@@ -46,24 +47,24 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
     {
         using (var context = new ApplicationDbContext(_configurationContext.ConnectionString))
         {
-            var statisticColumnCharts = context.Logs
+            var statisticColumnChart = context.Logs
                 .Where(i=> i.AppId == appId)
-                .GroupBy(e => new { e.AppId, e.Name, Month = new DateTime(e.LogDate.Year, e.LogDate.Month, 1) })
+                .GroupBy(e => new { e.App.Id, e.App.Name, Month = new DateTime(e.LogDate.Year, e.LogDate.Month, e.LogDate.Day) })
                 .Select(g => new StatisticColumnChartResponse
                 {
-                    AppId = g.Key.AppId,
+                    AppId = g.Key.Id,
                     AppName = g.Key.Name,
-                    ColumnChartModels = g.GroupBy(e => e.Level)
+                    ColumnChartModels = g.GroupBy(e => e.LogDate)
                         .Select(gg => new StatisticColumnChartModel
-                        {
+                        { 
                             DateMon = g.Key.Month,
-                            Statistics = gg.GroupBy(e => e.LogDate.Month)
+                            Statistics = gg.GroupBy(e => e.Level)
                                 .OrderBy(ggg => ggg.Key)
                                 .Select(ggg => new KeyValuePair<string, int>(ggg.Key.ToString(), ggg.Count()))
                         })
-                });
+                }).FirstOrDefault();
 
-            return statisticColumnCharts.FirstOrDefault();
+            return statisticColumnChart;
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Application.DataAccess.Entities;
 
 public class Log : BaseEntity<Guid>
 {
-    public virtual App Apps { get; set; }
+    public virtual App App { get; set; }
     public Guid AppId { get; set; }
     public Guid? UserId { get; set; }
     public  string Name { get; set; }

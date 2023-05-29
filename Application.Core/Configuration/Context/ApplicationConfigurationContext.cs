@@ -11,8 +11,6 @@ namespace Application.Core.Configuration.Context
         public int RedisPort { get; set; }
         public string RedisUsername { get; set; }
         public string RedisPassword { get; set; }
-
-
         public string RabbitMQHost { get; set; }
         public int RabbitMQPort { get; set; }
         public string RabbitMQUsername { get; set; }

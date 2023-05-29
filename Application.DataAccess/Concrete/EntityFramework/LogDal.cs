@@ -43,7 +43,7 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
         }
     }
     
-    public StatisticColumnChartResponse StatisticColumnChart(Guid appId)
+    public IEnumerable<StatisticColumnChartResponse> StatisticColumnChart(Guid appId)
     {
         using (var context = new ApplicationDbContext(_configurationContext.ConnectionString))
         {
@@ -62,9 +62,9 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
                                 .OrderBy(ggg => ggg.Key)
                                 .Select(ggg => new KeyValuePair<string, int>(ggg.Key.ToString(), ggg.Count()))
                         })
-                }).FirstOrDefault();
+                });
 
-            return statisticColumnChart;
+            return statisticColumnChart.ToList();
         }
     }
 }

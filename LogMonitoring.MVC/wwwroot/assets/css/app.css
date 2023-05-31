@@ -24,6 +24,7 @@ File: Main Css File
   --bs-hr-border-color: gray-400;
 }
 
+
 [data-layout-mode=dark] {
   --bs-gray-100: #212529;
   --bs-gray-200: #2a3042;

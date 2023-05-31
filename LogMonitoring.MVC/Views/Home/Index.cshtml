@@ -47,114 +47,8 @@
                     </div>
                 </div>
 
-                <ul class="verti-timeline list-unstyled">
-                    <li class="event-list">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle font-size-18"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <h5 class="font-size-14">22 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    Responded to need “Volunteer Activities
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="event-list">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle font-size-18"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <h5 class="font-size-14">22 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    Responded to need “Volunteer Activities
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="event-list">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle font-size-18"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <h5 class="font-size-14">17 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    Everyone realizes why a new common language would be desirable... <a href="javascript: void(0);">Daha Fazlası</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="event-list active">
-                        <div class="event-timeline-dot">
-                            <i class="bx bxs-right-arrow-circle font-size-18 bx-fade-right"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <h5 class="font-size-14">15 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    Joined the group “Boardsmanship Forum”
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="event-list">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle font-size-18"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <h5 class="font-size-14">12 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    Responded to need “In-Kind Opportunity”
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-
-                    <li class="event-list">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle font-size-18"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <h5 class="font-size-14">12 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    Responded to need “In-Kind Opportunity”
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="event-list">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle font-size-18"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <h5 class="font-size-14">12 Nov <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    Responded to need “In-Kind Opportunity”
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                <ul class="verti-timeline list-unstyled" id="log-monitor-content-list" style="height: 450px">
+                  
                 </ul>
             </div>
         </div>
@@ -241,8 +135,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                 </div>
             </div>
         </div>
@@ -254,18 +146,7 @@
             <div class="card-body">
                 <div class="d-sm-flex flex-wrap">
                     <span class="card-title mb-4">Aylara Göre Hata Seviyeleri </span>
-  <div class="col-sm-6">
-                                        <div class="text-sm-end d-none d-sm-block">
-                                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                @{
-                                                    foreach (var app in (List<AppResponse>)TempData["apps"])
-                                                    {
-                                                        <button type="button" id="@app.Id"  class="btn ">@app.Name</button>
-                                                    }
-                                                }
-                                            </div>
-                                        </div>
-                                    </div>
+
                 </div>
 
                 <div id="stacked-column-chart" data-colors='["--bs-primary", "--bs-warning", "--bs-success"]' class="apex-charts" dir="ltr"></div>

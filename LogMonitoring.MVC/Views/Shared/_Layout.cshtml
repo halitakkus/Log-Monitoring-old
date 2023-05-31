@@ -10,6 +10,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        
+.custom-scrollbar::-webkit-scrollbar {
+    width: 7px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #2a3042;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #3c4b8e;
+    border-radius: 3px;
+}
+    </style>
     <meta charset="utf-8"/>
     <title>Yazılım İzleme Sistemi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +40,7 @@
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css"/>
 </head>
-<body data-topbar="dark" data-layout="horizontal">
+<body data-topbar="dark" data-layout="horizontal" class="custom-scrollbar">
 <!-- Loader -->
 <div id="preloader">
     <div id="status">
@@ -520,15 +535,37 @@
         </div>
     </div>
     <!-- end modal -->
-
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                                                    <div class="offcanvas-header">
+                                                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="offcanvas-body custom-scrollbar" id="offcanvasExampleContent" >
+                                                       
+                                                    </div>
+                                                </div>
     <footer class="footer">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6">
                     <script>document.write(new Date().getFullYear())</script> © Tübitak Bilgem · Bilgi Teknolojileri · Yazılım Geliştirme Ekibi
                 </div>
+                 <div class="col-sm-6">
+                                                        <div class="text-sm-end d-none d-sm-block">
+                                                            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                                                                @{
+                                                                    foreach (var app in (List<AppResponse>)TempData["apps"])
+                                                                    {
+                                                                        <button type="button" id="@app.Id"  class="btn ">@app.Name</button>
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                </div>
+                
             </div>
-        </div>
+      
     </footer>
 </div>
 <!-- end main content-->
@@ -607,7 +644,7 @@
 <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
 
 <script src="assets/js/pages/dashboard.init.js"></script>
-<script src="assets/js/statistics.js"></script>
+<script src="assets/js/fetchs.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>

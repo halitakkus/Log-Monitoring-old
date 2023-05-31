@@ -23,8 +23,7 @@ function processArray() {
     index++;
     let length = apps.length;
 
-    console.log(appId)
-    
+    appLogs(appId)
     chartColumnStatistics(appId)
     changeDisplayButton(appId)
     
@@ -47,17 +46,18 @@ function changeDisplayButton(appId)
 }
 function showColumnStatistics()
 {
-    getApps("/App/GetList/")
+    getAjaxRequest("/App/GetList/")
         .then(result => {
             apps = result.data;
+            let firstAppId = apps[0].id
+            chartColumnStatistics(firstAppId)
+            changeDisplayButton(firstAppId)
+            appLogs(firstAppId)
 
-            chartColumnStatistics(apps[0].id)
-            changeDisplayButton(apps[0].id)
-
-            setInterval(processArray,15000)
+            setInterval(processArray,4000)
 
         }).catch(error => {
-        alert("error!")
+        alert(error)
     })
 }
 
@@ -65,6 +65,81 @@ onload = (event) => {
         showColumnStatistics()
 };
 
+
+function appLogs(appId)
+{
+    getAjaxRequestById("/App/GetAppLogs", appId)
+        .then(result => {
+            
+            document.getElementById("log-monitor-content-list").innerHTML = ""
+            result.data.forEach(log => {
+                var element = ``
+                
+                if(log.isItFixed != true)
+                {
+                    element = `<li class="event-list active">    
+                                <div class="event-timeline-dot">
+                            <i class="bx bxs-right-arrow-circle font-size-18 bx-fade-right"></i>
+                        </div>`
+                }else{
+                    element = `<li class="event-list">`
+                }
+                
+                let content = `${element}
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <h5 class="font-size-14"> ${new Date(log.logDate).toLocaleDateString("tr-TR", { month: "long", day: "numeric" })} <i class="bx bx-right-arrow-alt font-size-16 text-primary align-middle ms-2"></i></h5>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div>
+                                    <a href="javascript: void(0);" onclick="logDetailForModal('${log.name}', '${log.logId}', '${log.appName}', '${log.content}', '${log.serverName}', '${log.serverIp}', '${log.logDate}', '${log.level}', '${log.userId}')" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">${log.name}</a> · ${log.appName} 
+                                </div>
+                            </div>
+                        </div>
+                    </li>`
+                
+                document.getElementById("log-monitor-content-list").innerHTML += content
+            })
+        })
+        .catch(error => {
+            alert(error)
+        })
+}
+
+function changeTrimmerContent(trimmedContent)
+{
+    let content = `<div style="overflow-wrap: break-word; word-wrap: break-word;">${trimmedContent}</div>`
+
+    let otherContent = `<div class="dropdown mt-3">
+                                               <button class="btn btn-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                                                      Dropdown button <i class="mdi mdi-chevron-down"></i>
+                                                </button>
+                                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                 <li><a class="dropdown-item" href="#">Action</a></li>
+                                                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                 </ul>
+                                         </div>`
+    
+    document.getElementById("offcanvasExampleContent").innerHTML = `${content} ${otherContent}`
+}
+
+function logDetailForModal(logName, logId, appName,logContent, serverName, serverIp, logDate, logLevel, userId)
+{
+    let labelText = `${logLevel} · ${appName} · ${logName}`
+   document.getElementById("offcanvasExampleLabel").innerHTML = labelText
+
+    let maxContentWorld = 940
+    var isLogContentBigger = logContent.length > maxContentWorld
+    var trimmedContent = isLogContentBigger ? logContent.substring(0, maxContentWorld) : logContent;
+
+    if(isLogContentBigger)
+    {
+        trimmedContent += `.. <a href="javascript: void(0);" onclick="changeTrimmerContent('${logContent}')"> daha fazlası </a>` 
+    }
+    
+    changeTrimmerContent(trimmedContent)
+}
 function chartColumnStatistics(appId)
 {
     series = []
@@ -72,7 +147,7 @@ function chartColumnStatistics(appId)
     warning.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     error.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     
-    getColumnChartStatisticsByAppIdViaAjaxRequest("/Statistic/GetColumnChartStatisticsByAppId", appId)
+    getAjaxRequestById("/Statistic/GetColumnChartStatisticsByAppId", appId)
         .then(result => {
             if(result.data != null)
             {
@@ -123,7 +198,7 @@ function chartColumnStatistics(appId)
             chartColumnInstall()
 
         }).catch(error => {
-        alert("error!")
+        alert(error)
     })
 }
 

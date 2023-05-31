@@ -23,7 +23,7 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
     {
         using (var context = new ApplicationDbContext(_configurationContext.ConnectionString))
         {
-            var logs = context.Logs.Take(7);
+            var logs = context.Logs.AsQueryable();
 
             if (appId != default)
             {
@@ -32,7 +32,9 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
 
             return logs.Select(i => new LogResponse
             {
-                AppId = i.AppId,
+                LogId = i.Id,
+                AppId = i.App.Id,
+                AppName = i.App.Name,
                 Name = i.Name,
                 LogDate = i.LogDate,
                 Level = i.Level,
@@ -41,7 +43,7 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
                 IsItFixed = i.IsItFixed,
                 ServerIp = i.ServerIp,
                 ServerName = i.ServerName
-            }).ToList();
+            }).OrderByDescending(i => i.LogDate).Take(7).ToList();
         }
     }
 

@@ -52,9 +52,9 @@ public class AppController: Controller
         return Json(response);
     }
     
-    public IActionResult GetAppLogs(Guid appId)
+    public IActionResult GetAppLogs(Guid id)
     {
-        var response = _logManager.GetLogs(appId);
+        var response = _logManager.GetLogs(id);
 
         if (response is null || !response.IsSuccess)
         {

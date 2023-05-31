@@ -1,4 +1,4 @@
-﻿function getColumnChartStatisticsByAppIdViaAjaxRequest(url, id) {
+﻿function getAjaxRequestById(url, id) {
     return new Promise((resolve, reject) => {
         fetch(`${url}/${id}`)
             .then(response => response.json())
@@ -12,7 +12,7 @@
     });
 }
 
-function getApps(url) {
+function getAjaxRequest(url) {
     return new Promise((resolve, reject) => {
         fetch(`${url}`)
             .then(response => response.json())

@@ -19,6 +19,32 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
         _configurationContext = context;
     }
 
+    public IEnumerable<LogResponse> GetLogs(Guid appId)
+    {
+        using (var context = new ApplicationDbContext(_configurationContext.ConnectionString))
+        {
+            var logs = context.Logs.Take(7);
+
+            if (appId != default)
+            {
+                logs = logs.Where(i => i.AppId == appId);
+            }
+
+            return logs.Select(i => new LogResponse
+            {
+                AppId = i.AppId,
+                Name = i.Name,
+                LogDate = i.LogDate,
+                Level = i.Level,
+                Content = i.Content,
+                UserId = i.UserId,
+                IsItFixed = i.IsItFixed,
+                ServerIp = i.ServerIp,
+                ServerName = i.ServerName
+            }).ToList();
+        }
+    }
+
     public StatisticsTotalLevelInfo StatisticsTotalLevelInfo()
     {
         using (var context = new ApplicationDbContext(_configurationContext.ConnectionString))
@@ -48,7 +74,6 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
         using (var context = new ApplicationDbContext(_configurationContext.ConnectionString))
         {
             var statisticColumnChart = context.Logs
-                .Where(i=> i.AppId == appId)
                 .GroupBy(e => new { e.App.Id, e.App.Name, Month = new DateTime(DateTime.Now.Year, e.LogDate.Month, e.LogDate.Day) })
                 .Select(g => new StatisticColumnChartResponse
                 {
@@ -63,6 +88,11 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
                                 .Select(ggg => new KeyValuePair<string, int>(ggg.Key.ToString(), ggg.Count()))
                         })
                 });
+
+            if (appId != default)
+            {
+                statisticColumnChart = statisticColumnChart.Where(i => i.AppId == appId);
+            }
 
             return statisticColumnChart.ToList();
         }

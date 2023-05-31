@@ -9,4 +9,5 @@ namespace Application.DataAccess.Abstract;
 public interface ILogDal: IRepository<Log, Guid>
 {
     IEnumerable<StatisticColumnChartResponse> StatisticColumnChart(Guid appId);
+    IEnumerable<LogResponse> GetLogs(Guid appId);
 }

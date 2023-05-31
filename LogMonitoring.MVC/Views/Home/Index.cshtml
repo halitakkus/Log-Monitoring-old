@@ -163,41 +163,84 @@
 
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Uygulamalar</h4>
+                <h4 class="card-title">Loglar</h4>
 
                 <div class="row">
-                    @{
-                        var apps = (List<AppResponse>)TempData["apps"];
-
-                        foreach (var app in apps)
-                        {
-                            <div class="col-lg-4">
-                                <div class="border p-3 rounded mt-4">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="avatar-xs me-3">
-                                            <span class="avatar-title rounded-circle bg-warning bg-soft text-warning font-size-18">
-                                                <i class="mdi mdi-bitcoin"></i>
-                                            </span>
-                                        </div>
-                                        <h5 class="font-size-14 mb-0">@app.Name</h5>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="text-muted mt-3">
-                                                <p>Annual Yield</p>
-                                                <h4>4.05 %</h4>
-                                                <p class="mb-0">0.00745 BTC</p>
-
-                                            </div>
-                                        </div>
-
-
+                    <div class="col-lg-4">
+                        <div class="border p-3 rounded mt-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title rounded-circle bg-warning bg-soft text-warning font-size-18">
+                                        <i class="mdi mdi-bitcoin"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-14 mb-0">Error</h5>
+                            </div>
+                 
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="text-muted mt-3">
+                                        <p>Annual Yield</p>
+                                        <h4>4.05 %</h4>
+                                        <p class="mb-0">0.00745 BTC</p>
+                 
                                     </div>
                                 </div>
+                 
+                 
                             </div>
-                        }
-                    }
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="border p-3 rounded mt-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title rounded-circle bg-warning bg-soft text-warning font-size-18">
+                                        <i class="mdi mdi-bitcoin"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-14 mb-0">Info</h5>
+                            </div>
+                    
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="text-muted mt-3">
+                                        <p>Annual Yield</p>
+                                        <h4>4.05 %</h4>
+                                        <p class="mb-0">0.00745 BTC</p>
+                    
+                                    </div>
+                                </div>
+                    
+                    
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-lg-4">
+                                                    <div class="border p-3 rounded mt-4">
+                                                        <div class="d-flex align-items-center mb-3">
+                                                            <div class="avatar-xs me-3">
+                                                                <span class="avatar-title rounded-circle bg-warning bg-soft text-warning font-size-18">
+                                                                    <i class="mdi mdi-bitcoin"></i>
+                                                                </span>
+                                                            </div>
+                                                            <h5 class="font-size-14 mb-0">Warning</h5>
+                                                        </div>
+                    
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="text-muted mt-3">
+                                                                    <p>Annual Yield</p>
+                                                                    <h4>4.05 %</h4>
+                                                                    <p class="mb-0">0.00745 BTC</p>
+                    
+                                                                </div>
+                                                            </div>
+                    
+                    
+                                                        </div>
+                                                    </div>
+                                                </div>
 
 
                 </div>
@@ -210,15 +253,14 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-sm-flex flex-wrap">
-                    <span class="card-title mb-4">Aylara Göre Hata Seviyeleri 🚀 </span>
+                    <span class="card-title mb-4">Aylara Göre Hata Seviyeleri </span>
   <div class="col-sm-6">
                                         <div class="text-sm-end d-none d-sm-block">
                                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                                  <button type="button" onclick="alert('tümü')" class="btn btn-outline-secondary">Tüm Uygulamalar</button>
                                                 @{
                                                     foreach (var app in (List<AppResponse>)TempData["apps"])
                                                     {
-                                                        <button type="button" onclick="alert('@app.Id')" class="btn btn-outline-secondary">@app.Name</button>
+                                                        <button type="button" id="@app.Id"  class="btn ">@app.Name</button>
                                                     }
                                                 }
                                             </div>

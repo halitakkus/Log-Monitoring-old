@@ -15,7 +15,7 @@ let error = {
 }
 
 let apps = []
-let index = 0
+let index = 1
 var interval = undefined
 function processArray() {
     const appId = apps[index].id;
@@ -24,12 +24,26 @@ function processArray() {
     let length = apps.length;
 
     console.log(appId)
+    
     chartColumnStatistics(appId)
+    changeDisplayButton(appId)
     
     if(index == length)
     {
         index = 0;
     }
+}
+
+function changeDisplayButton(appId)
+{
+    apps.forEach(app => {
+        
+        document.getElementById(app.id).style.backgroundColor = "transparent"
+        document.getElementById(app.id).style.color = "gray"
+    })
+
+    document.getElementById(appId).style.backgroundColor = "#3c4b8e"
+    document.getElementById(appId).style.color = "#fff"
 }
 function showColumnStatistics()
 {
@@ -38,8 +52,9 @@ function showColumnStatistics()
             apps = result.data;
 
             chartColumnStatistics(apps[0].id)
+            changeDisplayButton(apps[0].id)
 
-            setInterval(processArray,1500)
+            setInterval(processArray,15000)
 
         }).catch(error => {
         alert("error!")
@@ -48,21 +63,6 @@ function showColumnStatistics()
 
 onload = (event) => {
         showColumnStatistics()
-
-    /*
-    * setTimeout(function (){
-        chartColumnStatistics("aca9546a-195b-45e9-b48f-649fc2dabd11")
-    },1000)
-
-    setTimeout(function (){
-        chartColumnStatistics("6e7aaa7f-ceb2-4c6e-bcb4-0ff9f33b3232")
-    },2500)
-
-    setTimeout(function (){
-      
-        chartColumnStatistics("c2f94534-9184-4562-8758-53c03e5dfde4")
-    },4500)
-    * */
 };
 
 function chartColumnStatistics(appId)

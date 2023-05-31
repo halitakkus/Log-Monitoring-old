@@ -8,10 +8,12 @@ namespace AppController.MVC.Controllers;
 public class AppController: Controller
 {
     private readonly IAppManager _appManager;
-    
-    public AppController(IAppManager appManager)
+    private readonly ILogManager _logManager;
+
+    public AppController(IAppManager appManager, ILogManager logManager)
     {
         _appManager = appManager;
+        _logManager = logManager;
     }
     
     public IActionResult GetById(Guid id)
@@ -41,6 +43,18 @@ public class AppController: Controller
     public IActionResult GetList()
     {
         var response = _appManager.GetList();
+
+        if (response is null || !response.IsSuccess)
+        {
+            return View("Error");
+        }
+        
+        return Json(response);
+    }
+    
+    public IActionResult GetAppLogs(Guid appId)
+    {
+        var response = _logManager.GetLogs(appId);
 
         if (response is null || !response.IsSuccess)
         {

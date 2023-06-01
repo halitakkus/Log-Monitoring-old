@@ -55,7 +55,7 @@ function showColumnStatistics()
             changeDisplayButton(firstAppId)
             appLogs(firstAppId)
 
-            setInterval(processArray,4000)
+            setInterval(processArray,14000)
 
         }).catch(error => {
         alert(error)
@@ -134,7 +134,7 @@ function appLogs(appId)
             })
             if(result.data.logs.length == 0)
             {
-                document.getElementById("log-monitor-content-list").innerHTML = "Log kaydı bulunamadı."
+                document.getElementById("log-monitor-content-list").innerHTML = "<span class='m-2'>Log kaydı bulunamadı.</span>"
             }
            
 

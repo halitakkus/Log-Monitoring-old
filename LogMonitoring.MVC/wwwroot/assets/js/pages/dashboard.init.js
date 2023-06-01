@@ -129,11 +129,14 @@ function appLogs(appId)
                             </div>
                         </div>
                     </li>`
-
-               
                 
                 document.getElementById("log-monitor-content-list").innerHTML += content
             })
+            if(result.data.logs.length == 0)
+            {
+                document.getElementById("log-monitor-content-list").innerHTML = "Log kaydı bulunamadı."
+            }
+           
 
             var isErrorCount = false;
             var isInfoCount = false;
@@ -159,12 +162,12 @@ function appLogs(appId)
             
             if(isWarningCount)
             {
-                document.getElementById("warning-div").style =  "border-style: solid;border-width: 8px;border-color:rgb(241, 180, 76)"
+                document.getElementById("warning-div").style =  "border-style: solid;border-width: 2px;border-color:rgb(241, 180, 76)"
             } 
             
             if(isInfoCount)
             {
-                document.getElementById("info-div").style =  "border-style: solid;border-width: 8px;border-color:rgb(85, 110, 230)"
+                document.getElementById("info-div").style =  "border-style: solid;border-width: 1px;border-color:rgb(85, 110, 230)"
             }
         })
         .catch(error => {
@@ -321,8 +324,10 @@ function chartColumnInstall()
 var options, chart, radialbarColors = getChartColorsArray("radialBar-chart");
 function logChartInstall(totalLogCount, fixedLogCount)
 {
+    if(totalLogCount == 0)
+        totalLogCount = 1
     var achievement = Math.floor((fixedLogCount / totalLogCount) * 100);
-
+   
     logSeries.push(achievement)
     document.getElementById("radialBar-chart").innerHTML = ""
     

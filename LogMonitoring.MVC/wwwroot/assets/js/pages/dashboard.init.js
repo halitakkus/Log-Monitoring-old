@@ -66,13 +66,20 @@ onload = (event) => {
         showColumnStatistics()
 };
 
-
+function isWithinLastDay(dateString) {
+    var logDate = new Date(dateString);
+    var today = new Date();
+    var oneDay = 24 * 60 * 60 * 1000;
+    var difference = today - logDate;
+    return difference <= oneDay;
+}
 function appLogs(appId)
 {
-  
-    
     getAjaxRequestById("/App/GetAppLogs", appId)
         .then(result => {
+            document.getElementById("error-div").style = ""
+            document.getElementById("info-div").style = ""
+            document.getElementById("warning-div").style = ""
             logChartInstall(result.data.totalLogCount, result.data.fixedTotalLogCount)
             document.getElementById("log-monitor-content-list").innerHTML = ""
             document.getElementById("total-log-count").innerHTML = result.data.totalLogCount
@@ -80,6 +87,10 @@ function appLogs(appId)
             var ratio = Math.floor((result.data.totalLogCount / result.data.totalAppsLogCount) * 100);
             document.getElementById("text-log-ratio").innerHTML = `${ratio}%`
             
+            document.getElementById("info-card-label").innerHTML = `${result.data.totalInfoLogCount}`
+            document.getElementById("warning-card-label").innerHTML = `${result.data.totalWarningLogCount}`
+            document.getElementById("error-card-label").innerHTML = `${result.data.totalErrorLogCount}`
+            console.log(result.data.logs)
             result.data.logs.forEach(log => {
 
                 let labelColor = `#e83e8c`
@@ -123,6 +134,38 @@ function appLogs(appId)
                 
                 document.getElementById("log-monitor-content-list").innerHTML += content
             })
+
+            var isErrorCount = false;
+            var isInfoCount = false;
+            var isWarningCount = false;
+            
+            console.log(result.data.logs)
+            for (var key in result.data.logs) {
+                if (result.data.logs[key].isItFixed === false && isWithinLastDay(result.data.logs[key].logDate) && result.data.logs[key].level === 'Error') {
+                    isErrorCount = true;
+                }
+                if (result.data.logs[key].isItFixed === false && isWithinLastDay(result.data.logs[key].logDate) && result.data.logs[key].level === 'Warning') {
+                    isWarningCount = true;
+                }
+                if (result.data.logs[key].isItFixed === false && isWithinLastDay(result.data.logs[key].logDate) && result.data.logs[key].level === 'Info') {
+                    isInfoCount = true;
+                }
+            }
+            
+            if(isErrorCount)
+            {
+                document.getElementById("error-div").style =  "border-style: solid;border-width: 8px;border-color:rgb(184, 0, 70)"
+            } 
+            
+            if(isWarningCount)
+            {
+                document.getElementById("warning-div").style =  "border-style: solid;border-width: 8px;border-color:rgb(241, 180, 76)"
+            } 
+            
+            if(isInfoCount)
+            {
+                document.getElementById("info-div").style =  "border-style: solid;border-width: 8px;border-color:rgb(85, 110, 230)"
+            }
         })
         .catch(error => {
             alert(error)

@@ -33,6 +33,10 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
             {
                 logQuery = logQuery.Where(i => i.AppId == appId);
             }
+
+            logResponse.TotalErrorLogCount = logQuery.Count(i => i.Level.Contains("Error"));
+            logResponse.TotalWarningLogCount = logQuery.Count(i => i.Level.Contains("Warning"));
+            logResponse.TotalInfoLogCount = logQuery.Count(i => i.Level.Contains("Info"));
             
             var logs = logQuery.Select(i => new LogDto
             {

@@ -19,18 +19,22 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
         _configurationContext = context;
     }
 
-    public IEnumerable<LogResponse> GetLogs(Guid appId)
+    public LogResponse GetLogs(Guid appId)
     {
         using (var context = new ApplicationDbContext(_configurationContext.ConnectionString))
         {
-            var logs = context.Logs.AsQueryable();
+            var logResponse = new LogResponse();
+            
+            var logQuery = context.Logs.AsQueryable();
 
+            logResponse.TotalAppsLogCount = logQuery.Count();
+            
             if (appId != default)
             {
-                logs = logs.Where(i => i.AppId == appId);
+                logQuery = logQuery.Where(i => i.AppId == appId);
             }
-
-            return logs.Select(i => new LogResponse
+            
+            var logs = logQuery.Select(i => new LogDto
             {
                 LogId = i.Id,
                 AppId = i.App.Id,
@@ -44,6 +48,12 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
                 ServerIp = i.ServerIp,
                 ServerName = i.ServerName
             }).OrderByDescending(i => i.LogDate).Take(7).ToList();
+
+            logResponse.Logs = logs;
+            logResponse.TotalLogCount = logQuery.Count();
+            logResponse.FixedTotalLogCount = logQuery.Count(i => i.IsItFixed);
+
+            return logResponse;
         }
     }
 

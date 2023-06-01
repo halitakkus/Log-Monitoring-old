@@ -48,10 +48,10 @@ public class LogManager : ILogManager
         return new SuccessDataResult<StatisticColumnChartResponse>(response);
     }
 
-    public IDataResult<IEnumerable<LogResponse>> GetLogs(Guid appId)
+    public IDataResult<LogResponse> GetLogs(Guid appId)
     {
         var result = _logDal.GetLogs(appId);
 
-        return new SuccessDataResult<IEnumerable<LogResponse>>(result);
+        return new SuccessDataResult<LogResponse>(result);
     }
 }

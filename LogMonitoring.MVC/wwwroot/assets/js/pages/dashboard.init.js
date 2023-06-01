@@ -1,4 +1,5 @@
 var series = []
+var logSeries = []
 var info = {
     name: "Info",
     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -68,11 +69,31 @@ onload = (event) => {
 
 function appLogs(appId)
 {
+  
+    
     getAjaxRequestById("/App/GetAppLogs", appId)
         .then(result => {
-            
+            logChartInstall(result.data.totalLogCount, result.data.fixedTotalLogCount)
             document.getElementById("log-monitor-content-list").innerHTML = ""
-            result.data.forEach(log => {
+            document.getElementById("total-log-count").innerHTML = result.data.totalLogCount
+
+            var ratio = Math.floor((result.data.totalLogCount / result.data.totalAppsLogCount) * 100);
+            document.getElementById("text-log-ratio").innerHTML = `${ratio}%`
+            
+            result.data.logs.forEach(log => {
+
+                let labelColor = `#e83e8c`
+
+                if(log.level == "Warning")
+                {
+                    labelColor = "#f1b44c"
+                }else if (log.level == "Info")
+                {
+                    labelColor = "#556ee6"
+                }
+
+                let labelText = `<code class="highlighter-rouge" style="font-size:16px;color: ${labelColor}">${log.level}</code>`
+                
                 var element = ``
                 
                 if(log.isItFixed != true)
@@ -92,11 +113,13 @@ function appLogs(appId)
                             </div>
                             <div class="flex-grow-1">
                                 <div>
-                                    <a href="javascript: void(0);" onclick="logDetailForModal('${log.name}', '${log.logId}', '${log.appName}', '${log.content}', '${log.serverName}', '${log.serverIp}', '${log.logDate}', '${log.level}', '${log.userId}')" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">${log.name}</a> · ${log.appName} 
+                                     <a href="javascript: void(0);" onclick="logDetailForModal('${log.name}', '${log.logId}', '${log.appName}', '${log.content}', '${log.serverName}', '${log.serverIp}', '${log.logDate}', '${log.level}','${labelColor}', '${log.userId}', '${log.isItFixed}')" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">${labelText}</a> · ${log.name} · ${log.appName} 
                                 </div>
                             </div>
                         </div>
                     </li>`
+
+               
                 
                 document.getElementById("log-monitor-content-list").innerHTML += content
             })
@@ -108,41 +131,49 @@ function appLogs(appId)
 
 function changeTrimmerContent(trimmedContent)
 {
-    let content = `<div style="overflow-wrap: break-word; word-wrap: break-word;">${trimmedContent}</div>`
+    let content = `<strong>Hata Açıklaması:</strong> 
+ <div style="overflow-wrap: break-word; word-wrap: break-word;">${trimmedContent}</div>`
 
-    let otherContent = `<div class="dropdown mt-3">
-                                               <button class="btn btn-primary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                                                      Dropdown button <i class="mdi mdi-chevron-down"></i>
-                                                </button>
-                                                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                 <li><a class="dropdown-item" href="#">Action</a></li>
-                                                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                 </ul>
-                                         </div>`
-    
-    document.getElementById("offcanvasExampleContent").innerHTML = `${content} ${otherContent}`
+    document.getElementById("offcanvasExampleContent").innerHTML = `${content}`
 }
-
-function logDetailForModal(logName, logId, appName,logContent, serverName, serverIp, logDate, logLevel, userId)
+function logDetailForModal(logName, logId, appName,logContent, serverName, serverIp, logDate, logLevel,labelColor, userId, isItFixed)
 {
-    let labelText = `${logLevel} · ${appName} · ${logName}`
-   document.getElementById("offcanvasExampleLabel").innerHTML = labelText
+    let labelText = `<code class="highlighter-rouge" style="font-size:16px;color: ${labelColor}">${logLevel}</code>`
+    
+    document.getElementById("offcanvasExampleLabel").innerHTML = `${labelText} · <cite title="Source Title">${appName}</cite>`
 
     let maxContentWorld = 940
     var isLogContentBigger = logContent.length > maxContentWorld
     var trimmedContent = isLogContentBigger ? logContent.substring(0, maxContentWorld) : logContent;
-
+    
     if(isLogContentBigger)
     {
         trimmedContent += `.. <a href="javascript: void(0);" onclick="changeTrimmerContent('${logContent}')"> daha fazlası </a>` 
     }
+    
+    let doesTheErrorPersist = isItFixed == "false" ? "EVET" : "HAYIR"
+
+    let otherContent =  `<div>
+  <p><strong>Hata No:</strong> ${logId}</p>
+  <p><strong>Hata Başlığı:</strong> ${logName}</p>
+  <p><strong>Uygulama Adı:</strong> ${appName}</p>
+  <p><strong>Sunucu Adı:</strong> ${serverName}</p>
+  <p><strong>Sunucu Ip Numarası:</strong> ${serverIp}</p>
+  <p><strong>Hata Tarihi:</strong> ${new Date(logDate).toLocaleDateString("tr-TR")}</p>
+  <p><strong>Kullanıcı:</strong> ${userId}</p>
+  <p><strong>Hata Seviyesi:</strong> ${logLevel}</p>
+  <p><strong>Hata Devam Ediyor Mu?:</strong> ${doesTheErrorPersist}</p>
+  </div>`
+
+    document.getElementById("offcanvasExampleOtherContent").innerHTML = otherContent
     
     changeTrimmerContent(trimmedContent)
 }
 function chartColumnStatistics(appId)
 {
     series = []
+    logSeries = []
+    
     info.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     warning.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     error.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -194,7 +225,7 @@ function chartColumnStatistics(appId)
             series.push(info)
             series.push(warning)
             series.push(error)
-
+            
             chartColumnInstall()
 
         }).catch(error => {
@@ -245,51 +276,61 @@ function chartColumnInstall()
 }
 
 var options, chart, radialbarColors = getChartColorsArray("radialBar-chart");
-radialbarColors && (options = {
-    chart: {
-        height: 200,
-        type: "radialBar",
-        offsetY: -10
-    },
-    plotOptions: {
-        radialBar: {
-            startAngle: -135,
-            endAngle: 135,
-            dataLabels: {
-                name: {
-                    fontSize: "13px",
-                    color: void 0,
-                    offsetY: 60
-                },
-                value: {
-                    offsetY: 22,
-                    fontSize: "16px",
-                    color: void 0,
-                    formatter: function(e) {
-                        return e + "%"
+function logChartInstall(totalLogCount, fixedLogCount)
+{
+    var achievement = Math.floor((fixedLogCount / totalLogCount) * 100);
+
+    logSeries.push(achievement)
+    document.getElementById("radialBar-chart").innerHTML = ""
+    
+    radialbarColors && (options = {
+        chart: {
+            height: 200,
+            type: "radialBar",
+            offsetY: -10 
+        },
+        plotOptions: {
+            radialBar: {
+                startAngle: -135,
+                endAngle: 135,
+                dataLabels: {
+                    name: {
+                        fontSize: "13px",
+                        color: void 0,
+                        offsetY: 60
+                    },
+                    value: {
+                        offsetY: 22,
+                        fontSize: "16px",
+                        color: void 0,
+                        formatter: function(e) {
+                            return e + "%"
+                        }
                     }
                 }
             }
-        }
-    },
-    colors: radialbarColors,
-    fill: {
-        type: "gradient",
-        gradient: {
-            shade: "dark",
-            shadeIntensity: .15,
-            inverseColors: !1,
-            opacityFrom: 1,
-            opacityTo: 1,
-            stops: [0, 50, 65, 91]
-        }
-    },
-    stroke: {
-        dashArray: 4
-    },
-    series: [67],
-    labels: ["Series A"]
-}, (chart = new ApexCharts(document.querySelector("#radialBar-chart"), options)).render());
+        },
+        colors: radialbarColors,
+        fill: {
+            type: "gradient",
+            gradient: {
+                shade: "dark",
+                shadeIntensity: .15,
+                inverseColors: !1,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 50, 65, 91]
+            }
+        },
+        stroke: {
+            dashArray: 4
+        },
+        series: logSeries,
+        labels: ["Düzeltilme Oranı"]
+    }, (chart = new ApexCharts(document.querySelector("#radialBar-chart"), options)).render());
+}
+
+
 function getChartColorsArray(e) {
     if (null !== document.getElementById(e)) {
         var t = document.getElementById(e).getAttribute("data-colors");

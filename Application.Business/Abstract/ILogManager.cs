@@ -7,5 +7,5 @@ namespace Application.Business.Abstract;
 
 public interface ILogManager {
     IDataResult<StatisticColumnChartResponse> StatisticColumnChart(Guid appId);
-    IDataResult<IEnumerable<LogResponse>> GetLogs(Guid appId);
+    IDataResult<LogResponse> GetLogs(Guid appId);
 }

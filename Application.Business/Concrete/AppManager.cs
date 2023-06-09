@@ -5,6 +5,7 @@ using Application.Business.ValidationRules.FluentValidation;
 using Application.Core.AspectOrientedProgramming.Aspects.Validation;
 using Application.Core.Utilities.DataTransferObjects_DTO_;
 using Application.Core.Utilities.DataTransferObjects_DTO_.App;
+using Application.Core.Utilities.DataTransferObjects_DTO_.Log;
 using Application.Core.Utilities.Result;
 using Application.DataAccess.Abstract;
 using Application.DataAccess.Entities;
@@ -15,12 +16,14 @@ namespace Application.Business.Concrete;
 public class AppManager : IAppManager
 {
     private readonly IAppDal _appDal;
+    private readonly ILogDal _logDal;
     private readonly IMapper _mapper;
 
-    public AppManager(IAppDal appDal, IMapper mapper)
+    public AppManager(IAppDal appDal, IMapper mapper, ILogDal logDal)
     {
         _appDal = appDal;
         _mapper = mapper;
+        _logDal = logDal;
     }
     
     public IDataResult<IEnumerable<AppResponse>> GetList()
@@ -63,6 +66,17 @@ public class AppManager : IAppManager
         {
             return new ErrorResult();
         }
+
+        return new SuccessResult();
+    }
+
+    [ValidationAspect<IResult>(typeof(AppValidation.LogRequestValidator), Priority = 1)]
+    public IResult InsertLog(LogRequest request)
+    {
+        var entity = _mapper.Map<Log>(request);
+        var result = _logDal.Add(entity);
+
+        if (!result) return new ErrorResult("Log Eklenemedi.");
 
         return new SuccessResult();
     }

@@ -13,5 +13,6 @@ public class ProfileBase : AutoMapper.Profile
         CreateMap<AppRequest, App>();
         
         CreateMap<Log, LogResponse>();
+        CreateMap<Log, LogRequest>().ReverseMap();
     }
 }

@@ -41,16 +41,16 @@ public class AppController: Controller
         return Json(response);
     }
     
-    public IActionResult InsertLog(LogRequest request)
+    public IActionResult InsertLog([FromBody]LogRequest request)
     {
         var response = _appManager.InsertLog(request);
 
         if (response is null || !response.IsSuccess)
         {
-            return View("Error");
+            return Json(false);
         }
         
-        return Json(response);
+        return Json(response.IsSuccess);
     }
     
     public IActionResult GetList()

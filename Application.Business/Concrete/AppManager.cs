@@ -10,6 +10,7 @@ using Application.Core.Utilities.Result;
 using Application.DataAccess.Abstract;
 using Application.DataAccess.Entities;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Application.Business.Concrete;
 
@@ -71,7 +72,7 @@ public class AppManager : IAppManager
     }
 
     [ValidationAspect<IResult>(typeof(AppValidation.LogRequestValidator), Priority = 1)]
-    public IResult InsertLog(LogRequest request)
+    public IResult InsertLog([FromHeader]LogRequest request)
     {
         var entity = _mapper.Map<Log>(request);
         var result = _logDal.Add(entity);

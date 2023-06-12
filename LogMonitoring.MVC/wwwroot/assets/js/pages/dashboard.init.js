@@ -1,7 +1,7 @@
 var series = []
 var logSeries = []
-var info = {
-    name: "Info",
+var performance = {
+    name: "Performance",
     data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 }
 
@@ -98,7 +98,7 @@ function appLogs(appId)
                 if(log.level == "Warning")
                 {
                     labelColor = "#f1b44c"
-                }else if (log.level == "Info")
+                }else if (log.level == "Performance")
                 {
                     labelColor = "#556ee6"
                 }
@@ -150,7 +150,7 @@ function appLogs(appId)
                 if (result.data.logs[key].isItFixed === false && isWithinLastDay(result.data.logs[key].logDate) && result.data.logs[key].level === 'Warning') {
                     isWarningCount = true;
                 }
-                if (result.data.logs[key].isItFixed === false && isWithinLastDay(result.data.logs[key].logDate) && result.data.logs[key].level === 'Info') {
+                if (result.data.logs[key].isItFixed === false && isWithinLastDay(result.data.logs[key].logDate) && result.data.logs[key].level === 'Performance') {
                     isInfoCount = true;
                 }
             }
@@ -220,7 +220,7 @@ function chartColumnStatistics(appId)
     series = []
     logSeries = []
     
-    info.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    performance.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     warning.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     error.data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     
@@ -228,17 +228,17 @@ function chartColumnStatistics(appId)
         .then(result => {
             if(result.data != null)
             {
-              result.data.columnChartModels.forEach(i=> {//Info için
+              result.data.columnChartModels.forEach(i=> {//Performance için
 
                 let dateObject = new Date(i.dateMon);
                 let dateMonth = dateObject.getMonth() + 1
 
-                const foundEntry = i.statistics.find(entry => entry.key === info.name);
+                const foundEntry = i.statistics.find(entry => entry.key === performance.name);
 
                 if(foundEntry)
                 {
                     const foundValue = foundEntry.value
-                    info.data[dateMonth - 1] = foundValue
+                    performance.data[dateMonth - 1] = foundValue
                 }
             })
 
@@ -268,7 +268,7 @@ function chartColumnStatistics(appId)
             })
             }
             
-            series.push(info)
+            series.push(performance)
             series.push(warning)
             series.push(error)
             

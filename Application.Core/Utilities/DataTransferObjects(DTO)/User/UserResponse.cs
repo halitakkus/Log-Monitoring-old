@@ -1,7 +1,15 @@
-﻿namespace Application.Core.Utilities.DataTransferObjects.User;
+﻿using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
+
+namespace Application.Core.Utilities.DataTransferObjects.User;
 
 public class UserResponse
 {
+    public UserResponse(string name, string picture)
+    {
+        Ad = name;
+        ProfilResmi = picture;
+    }
+    
     public int Id { get; set; }
     public string Ad { get; set; }
     public string Soyad { get; set; }

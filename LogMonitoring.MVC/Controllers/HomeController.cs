@@ -1,4 +1,5 @@
 ﻿using Application.Business.Abstract;
+using Application.Core.Utilities.DataTransferObjects.User;
 using LogMonitoring.MVC.Constant;
 using LogMonitoring.MVC.Services.Session;
 using Microsoft.AspNetCore.Mvc;
@@ -20,8 +21,9 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        if(!_sessionService.Any(SessionKey.CurrentUser)) return View("Error");
-
+        if (!_sessionService.Any(SessionKey.CurrentUser))
+            _sessionService.Add<UserResponse>(SessionKey.CurrentUser, new UserResponse(SessionKey.AnonimUser, SessionKey.AnonimUserPicture));
+        
         var apps = _appManager.GetList();
 
         if (!apps.IsSuccess)

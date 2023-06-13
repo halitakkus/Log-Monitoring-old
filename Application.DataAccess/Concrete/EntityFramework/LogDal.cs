@@ -36,7 +36,7 @@ public class LogDal : EfRepositoryBase<Log, Guid>, ILogDal
 
             logResponse.TotalErrorLogCount = logQuery.Count(i => i.Level.Contains("Error"));
             logResponse.TotalWarningLogCount = logQuery.Count(i => i.Level.Contains("Warning"));
-            logResponse.TotalInfoLogCount = logQuery.Count(i => i.Level.Contains("Info"));
+            logResponse.TotalInfoLogCount = logQuery.Count(i => i.Level.Contains("Performance"));
             
             var logs = logQuery.Select(i => new LogDto
             {

@@ -90,7 +90,7 @@ function appLogs(appId)
             document.getElementById("info-card-label").innerHTML = `${result.data.totalInfoLogCount}`
             document.getElementById("warning-card-label").innerHTML = `${result.data.totalWarningLogCount}`
             document.getElementById("error-card-label").innerHTML = `${result.data.totalErrorLogCount}`
-            console.log(result.data.logs)
+            
             result.data.logs.forEach(log => {
 
                 let labelColor = `#e83e8c`

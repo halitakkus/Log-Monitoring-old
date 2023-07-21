@@ -81,4 +81,25 @@ public class AppManager : IAppManager
 
         return new SuccessResult();
     }
+
+    public void CheckLog(dynamic request)
+    {
+        var checkAppLogRequest = new CheckAppLogRequest();
+
+        checkAppLogRequest.AppId = (Guid)request.appId;
+        checkAppLogRequest.Func = (string)request.func;
+
+        var check = _appDal.CheckLog(checkAppLogRequest);
+
+        if (!check)
+            return;
+
+        var logs = _appDal.GetAllFixedLogs(checkAppLogRequest);
+        
+        foreach (var log in logs)
+        {
+            log.IsItFixed = true;
+            _logDal.UpdateAsync(log);
+        }
+    }
 }

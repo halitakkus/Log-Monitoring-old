@@ -15,4 +15,5 @@ public class Log : BaseEntity<Guid>
     public string ServerName { get; set; }
     public string ServerIp { get; set; }
     public DateTime LogDate { get; set; }
+    public string Func { get; set; }
 }

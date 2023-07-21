@@ -6,8 +6,6 @@ using Application.Core.AspectOrientedProgramming.Aspects.Exception;
 using Application.Core.Utilities.DataTransferObjects_DTO_.Log;
 using Application.Core.Utilities.Result;
 using Application.DataAccess.Abstract;
-using DocumentFormat.OpenXml.Bibliography;
-using DocumentFormat.OpenXml.Office2010.ExcelAc;
 
 namespace Application.Business.Concrete;
 

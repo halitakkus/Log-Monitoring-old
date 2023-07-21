@@ -16,7 +16,7 @@ public class SessionController : Controller
         _sessionService = sessionService;
     }
     public IActionResult Index(string token)
-    {
+    {    
         if (string.IsNullOrEmpty(token))
         {
             return View("Error");

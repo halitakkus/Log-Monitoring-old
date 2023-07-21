@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Application.Business.ValidationRules.FluentValidation;
-using Application.Core.AspectOrientedProgramming.Aspects.Validation;
 using Application.Core.Utilities.DataTransferObjects_DTO_;
 using Application.Core.Utilities.DataTransferObjects_DTO_.App;
 using Application.Core.Utilities.DataTransferObjects_DTO_.Log;
@@ -16,4 +14,5 @@ public interface IAppManager
     IResult Remove(RemoveEntityDTO request);
     IResult Insert(AppRequest request);
     IResult InsertLog(LogRequest request);
+    void CheckLog(dynamic request);
 }

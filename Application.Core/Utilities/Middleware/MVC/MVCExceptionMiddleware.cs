@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Primitives;
 
 namespace Application.Core.Utilities.Middleware.MVC
 {
@@ -23,6 +24,11 @@ namespace Application.Core.Utilities.Middleware.MVC
         {
             try
             {
+                if (context.Request.Headers.TryGetValue("X-Forwarded-Host", out StringValues host))
+                {
+                    context.Request.Host = new HostString(host);
+                }
+                
                 await _next(context);
             }
             catch (Exception e)

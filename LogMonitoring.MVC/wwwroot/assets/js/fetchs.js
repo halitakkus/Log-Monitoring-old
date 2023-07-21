@@ -1,6 +1,6 @@
 ﻿function getAjaxRequestById(url, id) {
     return new Promise((resolve, reject) => {
-        fetch(`${url}/${id}`)
+        fetch(`${window.host ? window.host: ''}${url}/${id}`)
             .then(response => response.json())
             .then(data => {
                 resolve(data);
@@ -14,7 +14,7 @@
 
 function getAjaxRequest(url) {
     return new Promise((resolve, reject) => {
-        fetch(`${url}`)
+        fetch(`${window.host ? window.host: ''}${url}`)
             .then(response => response.json())
             .then(data => {
                 resolve(data);

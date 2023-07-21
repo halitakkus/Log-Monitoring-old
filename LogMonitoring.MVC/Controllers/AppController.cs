@@ -52,7 +52,9 @@ public class AppController: Controller
         
         return Json(response.IsSuccess);
     }
-    
+
+    public void CheckLog([FromBody] dynamic model) => _appManager.CheckLog(model);
+ 
     public IActionResult GetList()
     {
         var response = _appManager.GetList();

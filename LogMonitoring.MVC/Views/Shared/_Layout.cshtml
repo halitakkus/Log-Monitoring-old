@@ -2,10 +2,16 @@
 @using LogMonitoring.MVC.Constant
 @using Application.Core.Utilities.DataTransferObjects.User
 @using Application.Core.Utilities.DataTransferObjects_DTO_.App
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.Extensions.Primitives
+@using Orleans.Runtime
+@using System.Net
 @inject ISessionService SessionService
 
 @{ var CurrentUser = SessionService.Get<UserResponse>(SessionKey.CurrentUser); }
-
+@{
+    StringValues host; 
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +32,7 @@
 }
     </style>
     <meta charset="utf-8"/>
-    <title>Yazılım İzleme Sistemi</title>
+    <title>Yazılım İzleme Sistemi · @Dns.GetHostName()</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
     <meta content="Themesbrand" name="author"/>
@@ -245,7 +251,7 @@
 
 
     <div class="dropdown d-none d-lg-inline-block ms-1">
-           <label class="m-lg-2 mt-8 text-white font-size-18">IT Yazılım İzleme Sistemi <span class="fas fa-code"></span></label>
+           <label class="m-lg-2 mt-8 text-white font-size-18">Yazılım İzleme Sistemi · @Dns.GetHostName() <span class="fas fa-code"></span></label>
         <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="fullscreen">
             <i class="bx bx-fullscreen"></i>
         </button>
@@ -476,6 +482,9 @@
 <div class="rightbar-overlay"></div>
 
 <!-- JAVASCRIPT -->
+<script>
+    window.host = '@Context.Request.Headers["X-Forwarded-Host"].ToString()'
+</script>
 <script src="assets/libs/jquery/jquery.min.js"></script>
 <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/libs/metismenu/metisMenu.min.js"></script>

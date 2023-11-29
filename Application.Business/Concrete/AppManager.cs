@@ -74,7 +74,16 @@ public class AppManager : IAppManager
     [ValidationAspect<IResult>(typeof(AppValidation.LogRequestValidator), Priority = 1)]
     public IResult InsertLog([FromHeader]LogRequest request)
     {
+        var universalTime  = request.LogDate.Date.ToUniversalTime();
+        
+        var check = _logDal.Find(i => i.LogDate == universalTime && i.Name == request.Name);
+
+        if (check != null)
+            return new SuccessResult();
+        
         var entity = _mapper.Map<Log>(request);
+        entity.LogDate = entity.LogDate.ToUniversalTime();
+        
         var result = _logDal.Add(entity);
 
         if (!result) return new ErrorResult("Log Eklenemedi.");
@@ -87,7 +96,6 @@ public class AppManager : IAppManager
         var checkAppLogRequest = new CheckAppLogRequest();
 
         checkAppLogRequest.AppId = (Guid)request.appId;
-        checkAppLogRequest.Func = (string)request.func;
 
         var check = _appDal.CheckLog(checkAppLogRequest);
 

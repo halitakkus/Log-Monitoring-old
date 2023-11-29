@@ -58,7 +58,7 @@ function showColumnStatistics()
             setInterval(processArray,14000)
 
         }).catch(error => {
-        alert(error)
+        console.log(error)
     })
 }
 

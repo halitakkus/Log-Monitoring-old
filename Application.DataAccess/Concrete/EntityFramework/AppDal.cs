@@ -19,7 +19,7 @@ public class AppDal: EfRepositoryBase<App, Guid>, IAppDal
         using (var context = new ApplicationDbContext(_configurationContext.ConnectionString))
         {
             return context.Logs.Any(
-                i => i.AppId == checkAppLogRequest.AppId && i.Func.Contains(checkAppLogRequest.Func));
+                i => i.AppId == checkAppLogRequest.AppId);
         }
     }
     
@@ -28,7 +28,7 @@ public class AppDal: EfRepositoryBase<App, Guid>, IAppDal
         using (var context = new ApplicationDbContext(_configurationContext.ConnectionString))
         {
             return context.Logs.Where(
-                i => i.AppId == checkAppLogRequest.AppId && i.Func.Contains(checkAppLogRequest.Func)).ToList();
+                i => i.AppId == checkAppLogRequest.AppId).ToList();
         }
     }
 }

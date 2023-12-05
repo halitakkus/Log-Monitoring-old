@@ -74,12 +74,19 @@ public class AppManager : IAppManager
     [ValidationAspect<IResult>(typeof(AppValidation.LogRequestValidator), Priority = 1)]
     public IResult InsertLog([FromHeader]LogRequest request)
     {
-        var universalTime  = request.LogDate.Date.ToUniversalTime();
-        
-        var check = _logDal.Find(i => i.LogDate == universalTime && i.Name == request.Name);
+        var check = _logDal
+            .Find(i => i.Name == request.Name);
 
         if (check != null)
+        {
+            check.LogDate = check.LogDate.ToUniversalTime();
+            check.CreatedDate = check.CreatedDate.ToUniversalTime();
+            check.ModifiedDate = DateTime.UtcNow;
+            check.LogDate = DateTime.UtcNow;
+            
+            _logDal.Update(check);
             return new SuccessResult();
+        }
         
         var entity = _mapper.Map<Log>(request);
         entity.LogDate = entity.LogDate.ToUniversalTime();
